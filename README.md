@@ -2,7 +2,7 @@
 
 ## RDataFrame code for B->tW search on NanoAOD
 
-This fork contains some machine learning extensions to the preexisting R-Dataframe code being used in the B->tW search.
+This repository contains the R-Dataframe event selection code being used in the B->tW search, B2G-24-013.
 
 ----------------------------------------------------------------
 
