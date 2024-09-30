@@ -1,4 +1,3 @@
-
 // --------------------------------------------------------------------------------------- //
 // Implimentation of RDataFrame in C++.					                   //
 // Comments on creating a singly produced VLQ search			                   //
@@ -19,17 +18,11 @@
 #include <iomanip>
 #include <fstream>
 #include <cmath>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TH3.h>
-#include <algorithm> // std::sort
 #include <TFile.h>
-#include <TH1.h>
 #include <TF1.h>
 #include <TVector2.h>
 #include <TRandom3.h>
 #include <sstream>
-#include <chrono> // for high_resolution_clock
 #include "../correctionlib/include/correction.h"
 
 using namespace std;
@@ -42,7 +35,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   TStopwatch time;
   time.Start();
   string sample = this->sample;
-  int samplebin = this->samplebin;
+  //  int samplebin = this->samplebin;
   string year = this->year;
   bool isMC = this->isMC;
 
@@ -95,7 +88,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   std::vector<float> elsf_etas = {-2.5, -2.0, -1.566, -1.442, -0.8, 0.0, 0.8, 1.442, 1.566, 2.0, 2.5};
   std::vector<float> muiso_pts = {50,60,99999};
   std::vector<float> musf_etas = {0,0.9,1.2,2.1,2.4};
-  std::vector<float> elhlt_pts = {55,120,200,99999}; // from top charge asym paper, EOY
+  std::vector<float> elhlt_pts = {55,120,200,99999}; 
   std::vector<float> muhlt_pts = {55,60,120,200,300,99999};
   float muonisosfunc = 0.002;
 
@@ -104,13 +97,13 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   std::vector<std::vector<float>> btageffs = this->btageffs;
 
   // ParticleNet Top and W efficiencies
-  std::vector<float> pnetpts = this->pnetpts;
-  std::vector<std::vector<float>> pnet_t_t = this->pnet_t_t;
-  std::vector<std::vector<float>> pnet_t_W = this->pnet_t_W;
-  std::vector<std::vector<float>> pnet_W_t = this->pnet_W_t;
-  std::vector<std::vector<float>> pnet_W_W = this->pnet_W_W;
-  std::vector<std::vector<float>> pnet_J_t = this->pnet_J_t;
-  std::vector<std::vector<float>> pnet_J_W = this->pnet_J_W;
+  // std::vector<float> pnetpts = this->pnetpts;
+  // std::vector<std::vector<float>> pnet_t_t = this->pnet_t_t;
+  // std::vector<std::vector<float>> pnet_t_W = this->pnet_t_W;
+  // std::vector<std::vector<float>> pnet_W_t = this->pnet_W_t;
+  // std::vector<std::vector<float>> pnet_W_W = this->pnet_W_W;
+  // std::vector<std::vector<float>> pnet_J_t = this->pnet_J_t;
+  // std::vector<std::vector<float>> pnet_J_W = this->pnet_J_W;
   
   // -------------------------------------------------------
   //               correctionLib corrections
@@ -118,15 +111,25 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   
   std::string yrstr, yr, jecyr, jeryr, jecver;
   float deepjetL;
-  string mutrig = "TkMu50";
+  int pubit = 0;
   if(year == "2016APV") {deepjetL = 0.0508; yrstr = "2016preVFP"; yr = "16"; jecyr = "UL16APV"; jeryr = "Summer20UL16APV_JRV3"; jecver = "V7";}
   else if(year == "2016") {deepjetL = 0.0480; yrstr = "2016postVFP"; yr = "16"; jecyr = "UL16"; jeryr = "Summer20UL16_JRV3"; jecver = "V7";}
-  else if(year == "2017") {mutrig = "OldMu100_or_TkMu100"; deepjetL = 0.0532; yrstr = "2017"; yr = "17"; jecyr = "UL17"; jeryr = "Summer19UL17_JRV2"; jecver = "V5";}
-  else if(year == "2018") {mutrig = "OldMu100_or_TkMu100"; deepjetL = 0.0490; yrstr = "2018"; yr = "18"; jecyr = "UL18"; jeryr = "Summer19UL18_JRV2"; jecver = "V5";}
+  else if(year == "2017") {pubit = 2; deepjetL = 0.0532; yrstr = "2017"; yr = "17"; jecyr = "UL17"; jeryr = "Summer19UL17_JRV2"; jecver = "V5";}
+  else if(year == "2018") {pubit = 2; deepjetL = 0.0490; yrstr = "2018"; yr = "18"; jecyr = "UL18"; jeryr = "Summer19UL18_JRV2"; jecver = "V5";}
   else std::cout << "ERROR: Can't parse the year to assign correctionLib json files. Expected 2016, 2016APV, 2017, or 2018. Got: " << year << std::endl;
-  
-  auto pileupcorrset = CorrectionSet::from_file("jsonpog-integration/POG/LUM/"+yrstr+"_UL/puWeights.json");
+
+  time.Stop();
+  time.Print();
+  time.Start();
+
+  auto pileupcorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/LUM/"+yrstr+"_UL/puWeights.json.gz");
+  time.Stop();
+  time.Print();
+  time.Start();
   auto electroncorrset = CorrectionSet::from_file("jsonpog-integration/POG/EGM/"+yrstr+"_UL/electron.json");
+  time.Stop();
+  time.Print();
+  time.Start();
   auto muoncorrset = CorrectionSet::from_file("jsonpog-integration/POG/MUO/"+yrstr+"_UL/muon_Z.json");
   auto btagcorrset = CorrectionSet::from_file("jsonpog-integration/POG/BTV/"+yrstr+"_UL/btagging.json");
   auto jetvetocorrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/jetvetomaps.json");
@@ -143,6 +146,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   auto jetvetocorr = jetvetocorrset->at("Summer19UL"+yr+"_V1"); std::cout << "\t loaded jet veto (only applied for 2018 HEM1516)" << std::endl;
   auto topcorr = jmarcorrset->at("ParticleNet_Top_Nominal"); std::cout << "\t loaded ParticleNet top" << std::endl;
   auto Wcorr = jmarcorrset->at("ParticleNet_W_Nominal"); std::cout << "\t loaded ParticleNet W" << std::endl;
+  auto pujetcorr = jmarcorrset->at("PUJetID_eff"); std::cout << "\t loaded PU Jet ID" << std::endl;
   auto metptcorr = metcorrset->at("pt_metphicorr_pfmet_mc"); std::cout << "\t loaded met pt xy" << std::endl;
   auto metphicorr = metcorrset->at("phi_metphicorr_pfmet_mc"); std::cout << "\t loaded met phi xy" << std::endl;
   if(!isMC){metptcorr = metcorrset->at("pt_metphicorr_pfmet_data"); metphicorr = metcorrset->at("phi_metphicorr_pfmet_data");}
@@ -240,16 +244,20 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     }
     return hlt;
   }; 
-  auto jetvetofunc = [jetvetocorr,year,isMC](const RVec<float> &eta, const RVec<float> &phi, const RVec<int> id, const RVec<int> run){
+  auto jetvetofunc = [jetvetocorr,year,isMC](const RVec<float> &eta, const RVec<float> &phi, const RVec<float> &pt, const RVec<int> &id, const RVec<int> &pupass, const RVec<float> &area, const unsigned int &run){
+    bool isAK4 = false;
+    if(ROOT::VecOps::Mean(area) < 1.0) isAK4 = true;
     RVec<double> map(eta.size(), 0.0);
     TRandom3 rand(0);
-    if(run > 319077 || (run == 1 && rand.Rndm() > 0.35)){
+    if(year == "2018" && (run >= 319077 || (run == 1 && rand.Rndm() > 0.35))){
       for(unsigned int ijet = 0; ijet < eta.size(); ijet++){
 	float phitemp = phi[ijet];
 	if(phitemp < -3.14159) phitemp = -3.14159;
 	else if(phitemp > 3.14159) phitemp = 3.14159;
-	if(eta[ijet] < -1.5 && eta[ijet] > -3.5 && phitemp > -0.8 && phitemp < -1.7 && id.at(ijet) > 1){
-	  map.push_back(jetvetocorr->evaluate({"jetvetomap_hem1516",eta.at(ijet),phitemp}));
+	if(pt[ijet] > 30 && id.at(ijet) > 1 && eta[ijet] < -1.0 && eta[ijet] > -3.5 && phitemp < -0.7 && phitemp > -1.7){
+	  bool passesPUID = true;
+	  if(isAK4 && pt[ijet] < 50 && pupass[ijet] == 0) passesPUID = false; // only 2018, only AK4
+	  if(passesPUID) map[ijet] = jetvetocorr->evaluate({"jetvetomap_hem1516",eta.at(ijet),phitemp});
 	}
       }
     }
@@ -317,107 +325,93 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     return weights;      
   };
 
-  auto pnetfunc = [samplebin,pnetpts,pnet_t_t,pnet_W_W,topcorr,Wcorr](const RVec<float> &eta, const RVec<float> &pt, const RVec<int> &match, const RVec<int> &tag, const RVec<int> &OS){
+  auto pnetfunc = [topcorr,Wcorr](const RVec<float> &eta, const RVec<float> &pt, const RVec<int> &match, const RVec<int> &tag, const RVec<int> &OS){
+  //auto pnetfunc = [samplebin,pnetpts,pnet_t_t,pnet_W_W,topcorr,Wcorr](const RVec<float> &eta, const RVec<float> &pt, const RVec<int> &match, const RVec<int> &tag, const RVec<int> &OS){
     // This is the classic SF weight. Btagging language is P(DATA)/P(MC) since we will require t or W tag for region 1,2 and reject for region 3,4
     // w = (prod-tagged SF*eff)*(prod-not-tagged 1-SF*eff) / (prod-tagged eff)*(prod-not-tagged 1-eff)
     // a tagged true-top/W jet contributes SF*eff/eff = SF
-    // an untagged true-top/W jet contributes (1 - SF*eff)/(1-eff)
+    // an untagged true-top/W jet contributes (1 - SF*eff)/(1-eff) --> instructed by Fabio that ParticleNet SFs do not need this. 
     // no SFs exist for any other flavor, so they contribute 1
     // save all good AK8 weights, and then just OSFJ1 weight
-    std::vector<float> pnetweights = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
-
+    RVec<float> pnetweights = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+    float topsf = 1.0; float topsfup = 1.0; float topsfdn = 1.0;
+    float Wsf = 1.0; float Wsfup = 1.0; float Wsfdn = 1.0;
+    int OSFJ1 = ROOT::VecOps::ArgMax(pt[OS]);
     for(unsigned int ijet = 0; ijet < pt.size(); ijet++){
       if(match[ijet] == 6 && pt[ijet] > 300 && pt[ijet] < 1200 && abs(eta[ijet]) < 2.4){
-	if(tag[ijet] == 1 || tag[ijet] == 3){
-	  pnetweights[0] *= static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}));
-	  pnetweights[1] *= static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}));
-	  pnetweights[2] *= static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}));
-	}else{
-	  int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[ijet]) - pnetpts.begin())-1;
-	  float eff = pnet_t_t[samplebin][ptbin];
-	  pnetweights[0] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}))*eff)/(1.0 - eff);
-	  pnetweights[1] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}))*eff)/(1.0 - eff);
-	  pnetweights[2] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}))*eff)/(1.0 - eff);
-	}
+        topsf = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}));
+        topsfup = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}));
+        topsfdn = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}));
+        if(tag[ijet] == 1 || tag[ijet] == 3){ // top tagged
+          pnetweights[0] *= topsf;
+          pnetweights[1] *= topsfup;
+          pnetweights[2] *= topsfdn;
+          if(ijet == OSFJ1){
+            pnetweights[6] *= topsf;
+            pnetweights[7] *= topsfup;
+            pnetweights[8] *= topsfdn;
+          }
+        // }else{
+        //   int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[ijet]) - pnetpts.begin())-1;
+        //   float eff = pnet_t_t[samplebin][ptbin];
+        //   pnetweights[0] *= (1.0 - topsf*eff)/(1.0 - eff);
+        //   pnetweights[1] *= (1.0 - topsfup*eff)/(1.0 - eff);
+        //   pnetweights[2] *= (1.0 - topsfdn*eff)/(1.0 - eff);
+        //   if(ijet == OSFJ1){
+        //     pnetweights[6] *= (1.0 - topsf*eff)/(1.0 - eff);
+        //     pnetweights[7] *= (1.0 - topsfup*eff)/(1.0 - eff);
+        //     pnetweights[8] *= (1.0 - topsfdn*eff)/(1.0 - eff);
+        //   }
+        }
       }else if(match[ijet] == 24 && pt[ijet] > 200 && pt[ijet] < 800 && abs(eta[ijet]) < 2.4){
-	if(tag[ijet] == 2 || tag[ijet] == 3){
-	  pnetweights[3] *= static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}));
-	  pnetweights[4] *= static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}));
-	  pnetweights[5] *= static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}));
-	}else{
-	  int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[ijet]) - pnetpts.begin())-1;
-	  float eff = pnet_W_W[samplebin][ptbin];
-	  pnetweights[3] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}))*eff)/(1.0 - eff);
-	  pnetweights[4] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}))*eff)/(1.0 - eff);
-	  pnetweights[5] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}))*eff)/(1.0 - eff);
+        Wsf = static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}));
+        Wsfup = static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}));
+        Wsfdn = static_cast<float>(Wcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}));
+        if(tag[ijet] == 2 || tag[ijet] == 3){ // W tagged
+          pnetweights[3] *= Wsf;
+          pnetweights[4] *= Wsfup;
+          pnetweights[5] *= Wsfdn;
+          if(ijet == OSFJ1){
+            pnetweights[9] *= Wsf;
+            pnetweights[10] *= Wsfup;
+            pnetweights[11] *= Wsfdn;
+          }
+         // }else{
+         //  int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[ijet]) - pnetpts.begin())-1;
+         //  float eff = pnet_W_W[samplebin][ptbin];
+         //  pnetweights[3] *= (1.0 - Wsf*eff)/(1.0 - eff);
+         //  pnetweights[4] *= (1.0 - Wsfup*eff)/(1.0 - eff);
+         //  pnetweights[5] *= (1.0 - Wsfdn*eff)/(1.0 - eff);
+         //  if(ijet == OSFJ1){
+         //    pnetweights[9] *= (1.0 - Wsf*eff)/(1.0 - eff);
+         //    pnetweights[10] *= (1.0 - Wsfup*eff)/(1.0 - eff);
+         //    pnetweights[11] *= (1.0 - Wsfdn*eff)/(1.0 - eff);
+         //  }
+        }
+      }
+    }
+    return pnetweights;  
+  };
+
+  auto pujetpass = [pubit](const RVec<int> &puid){RVec<int> passes(puid.size()); for(int i = 0; i < puid.size(); i++){passes[i] = puid[i] & (1 << pubit);} return passes;};
+  
+  auto pujetfunc = [pujetcorr,year](const RVec<float> &jt_pt, const RVec<float> &jt_eta, const RVec<float> &jt_phi, const RVec<float> &jt_mass, const RVec<int> &jt_pupass, const RVec<TLorentzVector> &genjt_p4, const RVec<int> &jt_genidx){
+    RVec<float> pujetidsf = {1.0, 1.0, 1.0};
+    for(unsigned int ijet = 0; ijet < jt_pt.size(); ijet++){
+      if(jt_pt[ijet] < 50.0 && jt_pupass[ijet] > 0 && jt_genidx[ijet] > -1){
+	TLorentzVector jet;
+	jet.SetPtEtaPhiM(jt_pt[ijet],jt_eta[ijet],jt_phi[ijet],jt_mass[ijet]);
+	float dR = genjt_p4[jt_genidx[ijet]].DeltaR(jet);
+	if(dR < 0.4){
+	  pujetidsf[0] *= pujetcorr->evaluate({jt_eta[ijet],jt_pt[ijet],"nom","L"});
+	  pujetidsf[1] *= pujetcorr->evaluate({jt_eta[ijet],jt_pt[ijet],"up","L"});
+	  pujetidsf[2] *= pujetcorr->evaluate({jt_eta[ijet],jt_pt[ijet],"down","L"});
 	}
       }
     }
-    int OSFJ1 = ROOT::VecOps::ArgMax(pt[OS]);
-    if(match[OS][OSFJ1] == 6 && pt[OS][OSFJ1] > 300 && pt[OS][OSFJ1] < 1200 && abs(eta[OS][OSFJ1]) < 2.4){
-      if(tag[OS][OSFJ1] == 1 || tag[OS][OSFJ1] == 3){
-	pnetweights[6] *= static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "nom", "1p0"}));
-	pnetweights[7] *= static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "up", "1p0"}));
-	pnetweights[8] *= static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "down", "1p0"}));
-      }else{
-	int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[OS][OSFJ1]) - pnetpts.begin())-1;
-	float eff = pnet_t_t[samplebin][ptbin];
-	pnetweights[6] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "nom", "1p0"}))*eff)/(1.0 - eff);
-	pnetweights[7] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "up", "1p0"}))*eff)/(1.0 - eff);
-	pnetweights[8] *= (1.0 - static_cast<float>(topcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "down", "1p0"}))*eff)/(1.0 - eff);
-      }
-    }else if(match[OS][OSFJ1] == 24 && pt[OS][OSFJ1] > 200 && pt[OS][OSFJ1] < 800 && abs(eta[OS][OSFJ1]) < 2.4){
-      if(tag[OS][OSFJ1] == 2 || tag[OS][OSFJ1] == 3){
-	pnetweights[9] *= static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "nom", "1p0"}));
-	pnetweights[10] *= static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "up", "1p0"}));
-	pnetweights[11] *= static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "down", "1p0"}));
-      }else{
-	int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[OS][OSFJ1]) - pnetpts.begin())-1;
-	float eff = pnet_W_W[samplebin][ptbin];
-	pnetweights[9] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "nom", "1p0"}))*eff)/(1.0 - eff);
-	pnetweights[10] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "up", "1p0"}))*eff)/(1.0 - eff);
-	pnetweights[11] *= (1.0 - static_cast<float>(Wcorr->evaluate({eta[OS][OSFJ1], pt[OS][OSFJ1], "down", "1p0"}))*eff)/(1.0 - eff);
-      }
-    }
-    
-    return pnetweights;
+    return pujetidsf;
   };
-		    
-  auto pnetcases = [samplebin,pnetpts,pnet_t_t,pnet_W_t,pnet_J_t,pnet_t_W,pnet_W_W,pnet_J_W,topcorr,Wcorr](const RVec<float> &eta, const RVec<float> &pt, const RVec<int> &match){
-    // This is different from b-tagging. We don't want to actually apply the cut on tagged / untagged. Rather we want to use the
-    // efficiencies and SFs to divide a superset into tagged/untagged. So I believe we want to build the P(DATA) weight from Method 1a
-    // I don't believe we want to divide that by P(MC) -- imagining a "tagged" case we don't want SF*eff/eff = SF, but really SF*eff
-    // ParticleNet SFs exist for top jets and W jets. I don't believe there are "mistagging" SFs like in btagging.
-
-    int HighestPt = ArgMax(pt);
-    int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[HighestPt]) - pnetpts.begin())-1;
-    std::vector<float> topsf = {1.0,1.0,1.0};
-    std::vector<float> Wsf = {1.0,1.0,1.0};
-    RVec<float> case1, case2, case3, case4;
-    std::vector<std::vector<float> > tmppnetT;
-    std::vector<std::vector<float> > tmppnetW;
-    if(match[HighestPt] == 6){
-      tmppnetT = pnet_t_t; tmppnetW = pnet_t_W; 
-      if(pt[HighestPt] > 300 && pt[HighestPt] < 1200 && abs(eta[HighestPt]) < 2.4){
-	topsf = {static_cast<float>(topcorr->evaluate({eta[HighestPt], pt[HighestPt], "nom", "1p0"})),static_cast<float>(topcorr->evaluate({eta[HighestPt], pt[HighestPt], "up", "1p0"})),static_cast<float>(topcorr->evaluate({eta[HighestPt], pt[HighestPt], "down", "1p0"}))};
-      }
-    }else if(match[HighestPt] == 24){
-      tmppnetT = pnet_W_t; tmppnetW = pnet_W_W;
-      if(pt[HighestPt] > 200 && pt[HighestPt] < 800 && abs(eta[HighestPt]) < 2.4){
-	Wsf = {static_cast<float>(Wcorr->evaluate({eta[HighestPt], pt[HighestPt], "nom", "5p0"})),static_cast<float>(Wcorr->evaluate({eta[HighestPt], pt[HighestPt], "up", "1p0"})),static_cast<float>(Wcorr->evaluate({eta[HighestPt], pt[HighestPt], "down", "1p0"}))};
-      }
-    }else{tmppnetT = pnet_J_t; tmppnetW = pnet_J_W;}// if(match[HighestPt] < 0) std::cout << "OS FatJet 1 matched leptonic: " << match[HighestPt] << std::endl;}
-
-    float one = 1.0;
-    case1 = {tmppnetT[samplebin][ptbin]*topsf.at(0),tmppnetT[samplebin][ptbin]*topsf.at(2),tmppnetT[samplebin][ptbin]*topsf.at(2)};
-    case4 = {one - tmppnetT[samplebin][ptbin]*topsf.at(0),one - tmppnetT[samplebin][ptbin]*topsf.at(1),one - tmppnetT[samplebin][ptbin]*topsf.at(2)};
-    case2 = {tmppnetW[samplebin][ptbin]*Wsf.at(0),tmppnetW[samplebin][ptbin]*Wsf.at(1),tmppnetW[samplebin][ptbin]*Wsf.at(2)};
-    case3 = {one - tmppnetW[samplebin][ptbin]*Wsf.at(0),one - tmppnetW[samplebin][ptbin]*Wsf.at(1),one - tmppnetW[samplebin][ptbin]*Wsf.at(2)};
-
-    RVec<RVec<float>> weights = {case1,case2,case3,case4};
-    return weights;
-  };
-
+  
   auto cleanJets = [debug,jesvar,isMC,ak4corr,ak4corrL1,ak4corrUnc,ak4ptres,ak4jer,ak8corr,ak8corrUnc](const RVec<TLorentzVector> &jt_p4, const RVec<float> &jt_rf, const RVec<float> &jt_murf, const RVec<float> &jt_area, const RVec<float> &jt_em, const RVec<int> &jt_id, const RVec<TLorentzVector> &genjt_p4, const RVec<int> &jt_genidx, const RVec<TLorentzVector> &mu_p4, const RVec<int> mu_jetid, const RVec<TLorentzVector> &el_p4, const RVec<int> &el_jetid, const float &rho, const float &met, const float &phi){
     RVec<float> cleanJetPt(jt_p4.size()), cleanJetEta(jt_p4.size()), cleanJetPhi(jt_p4.size()), cleanJetMass(jt_p4.size()), rawfact(jt_p4.size());
     string jervar = "nom";
@@ -507,7 +501,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
 
   auto rdf_input = ROOT::RDataFrame("Events", files); // Initial data
   
-  auto METgeneralFilters = rdf_input.Filter("Flag_EcalDeadCellTriggerPrimitiveFilter == 1 && Flag_goodVertices == 1 && Flag_HBHENoiseFilter == 1 && Flag_HBHENoiseIsoFilter == 1 && Flag_eeBadScFilter == 1 && Flag_globalSuperTightHalo2016Filter == 1 && Flag_BadPFMuonFilter == 1 && Flag_ecalBadCalibFilter == 1", "MET Filters")
+  auto METgeneralFilters = rdf_input.Filter("Flag_EcalDeadCellTriggerPrimitiveFilter == 1 && Flag_goodVertices == 1 && Flag_HBHENoiseFilter == 1 && Flag_HBHENoiseIsoFilter == 1 && Flag_eeBadScFilter == 1 && Flag_globalSuperTightHalo2016Filter == 1 && Flag_BadPFMuonFilter == 1 && Flag_ecalBadCalibFilter == 1 && Flag_BadPFMuonDzFilter == 1", "MET Filters")
     .Filter("nJet > 0 && nFatJet > 0", "Event has > 1 AK4 and > 1 AK8");
 
   auto truth = METgeneralFilters;
@@ -677,13 +671,14 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("cleanJet_phi", "cleanJets[2]")
     .Define("cleanJet_mass", "cleanJets[3]")
     .Define("cleanJet_rawFactor", "cleanJets[4]")
-    .Define("cleanJet_vetomap", jetvetofunc, {"cleanJet_eta","cleanJet_phi","Jet_jetId","run"})
+    .Define("cleanJet_puPass", pujetpass, {"Jet_puId"})
+    .Define("cleanJet_vetomap", jetvetofunc, {"cleanJet_eta","cleanJet_phi","cleanJet_pt","Jet_jetId","cleanJet_puPass","Jet_area","run"})
     .Define("cleanFatJet_pt", "cleanFatJets[0]")
     .Define("cleanFatJet_eta", "cleanFatJets[1]")
     .Define("cleanFatJet_phi", "cleanFatJets[2]")
     .Define("cleanFatJet_mass", "cleanFatJets[3]")
     .Define("cleanFatJet_rawFactor", "cleanFatJets[4]")
-    .Define("cleanFatJet_vetomap", jetvetofunc, {"cleanFatJet_eta","cleanFatJet_phi","FatJet_jetId","run"});
+    .Define("cleanFatJet_vetomap", jetvetofunc, {"cleanFatJet_eta","cleanFatJet_phi","cleanFatJet_pt","FatJet_jetId","cleanJet_puPass","FatJet_area","run"}); //puId is a dummy
 
   // ---------------------------------------------------------
   //                    MET Selection
@@ -700,10 +695,10 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   // ---------------------------------------------------------
   // 	  HT Calculation and N Jets cuts
   // ---------------------------------------------------------
-  
+
   auto JetSelect = METSelect.Define("DR_lepJets","DeltaR_VecAndFloat(cleanJet_eta,cleanJet_phi,lepton_eta,lepton_phi)")
     .Define("ptrel_lepJets","ptRel(cleanJet_pt,cleanJet_eta,cleanJet_phi,cleanJet_mass,lepton_pt,lepton_eta,lepton_phi,lepton_mass)")
-    .Define("goodcleanJets", "cleanJet_pt > 30 && abs(cleanJet_eta) < 2.5 && Jet_jetId > 1 && (DR_lepJets > 0.4 || ptrel_lepJets > 20) && cleanJet_vetomap == 0")
+    .Define("goodcleanJets", "cleanJet_pt > 30 && (cleanJet_pt > 50 || cleanJet_puPass > 0) && abs(cleanJet_eta) < 2.5 && Jet_jetId > 1 && (DR_lepJets > 0.4 || ptrel_lepJets > 20) && cleanJet_vetomap == 0")
     .Define("gcJet_pt_unsort", "cleanJet_pt[goodcleanJets == true]")
     .Define("gcJet_ptargsort","ROOT::VecOps::Reverse(ROOT::VecOps::Argsort(gcJet_pt_unsort))")
     .Define("gcJet_pt","reorder(gcJet_pt_unsort,gcJet_ptargsort)")
@@ -727,6 +722,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("gcJet_eta", "reorder(cleanJet_eta[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_phi", "reorder(cleanJet_phi[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_mass", "reorder(cleanJet_mass[goodcleanJets == true],gcJet_ptargsort)")
+    .Define("gcJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanJets == true],gcJet_ptargsort)")
+    .Define("gcJet_puPass","reorder(cleanJet_puPass[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_DeepFlav", "reorder(Jet_btagDeepFlavB[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_DeepFlavL", Form("gcJet_DeepFlav > %f",deepjetL)) 
     .Define("NJets_DeepFlavL", "(int) Sum(gcJet_DeepFlavL)")
@@ -750,7 +747,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("NOS_gcJets_DeepFlavL","(int) Sum(gcOSJet_DeepFlavL)")
     .Define("NSS_gcJets_DeepFlavL","(int) Sum(gcSSJet_DeepFlavL)");
 
-  auto ForwardJetVars = JetVars.Define("goodcleanForwardJets", "cleanJet_pt > 30 && abs(cleanJet_eta) >= 2.5 && Jet_jetId > 1 && cleanJet_vetomap == 0")
+  auto ForwardJetVars = JetVars.Define("goodcleanForwardJets", "cleanJet_pt > 30 && (cleanJet_pt > 50 || cleanJet_puPass > 0) && abs(cleanJet_eta) >= 2.5 && Jet_jetId > 1 && cleanJet_vetomap == 0")
     .Define("NJets_forward", "(int) Sum(goodcleanForwardJets)")
     .Define("gcforwJet_pt_unsort", "cleanJet_pt[goodcleanForwardJets == true]")
     .Define("gcforwJet_ptargsort","ROOT::VecOps::Reverse(ROOT::VecOps::Argsort(gcforwJet_pt_unsort))")
@@ -758,6 +755,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("gcforwJet_eta", "reorder(cleanJet_eta[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_phi", "reorder(cleanJet_phi[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_mass", "reorder(cleanJet_mass[goodcleanForwardJets == true],gcforwJet_ptargsort)")
+    .Define("gcforwJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanForwardJets == true],gcforwJet_ptargsort)")
+    .Define("gcforwJet_puPass","reorder(cleanJet_puPass[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_DeepFlav", "reorder(Jet_btagDeepFlavB[goodcleanForwardJets == true],gcforwJet_ptargsort)");
 
   auto FatJetVars = ForwardJetVars.Define("gcFatJet_pt_unsort", "FatJet_pt[goodcleanFatJets == true]")
@@ -789,15 +788,17 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
       .Define("gcFatJet_hadronFlavour","reorder(FatJet_hadronFlavour[goodcleanFatJets == true],gcFatJet_ptargsort)")
       .Define("gcFatJet_genmatch", Form("FatJet_matching(\"%s\", gcFatJet_eta, gcFatJet_phi, NFatJets, gcFatJet_hadronFlavour, nGenPart, GenPart_pdgId, GenPart_phi, GenPart_eta, GenPart_genPartIdxMother, t_bkg_idx, W_bkg_idx)",sample.c_str()))
       .Define("gcOSFatJet_genmatch", "gcFatJet_genmatch[OS_gcFatJets==true]")
-      // .Define("pnetoutput", pnetcases, {"gcOSFatJet_eta","gcOSFatJet_pt","gcOSFatJet_genmatch"})
-      // .Define("case1weights","pnetoutput[0]")
-      // .Define("case4weights","pnetoutput[1]")
-      // .Define("case2weights","pnetoutput[2]")
-      // .Define("case3weights","pnetoutput[3]")
       .Define("leptonRecoSF", recofunc, {"lepton_pt","lepton_eta","isEl"})
       .Define("leptonIDSF", idfunc, {"lepton_pt","lepton_eta","isEl"})
       .Define("leptonIsoSF", isofunc, {"lepton_pt","lepton_eta","isEl"})
       .Define("leptonHLTSF", hltfunc, {"lepton_pt","lepton_eta","isEl"})
+      .Define("ak4Jet_pt","ROOT::VecOps::Concatenate(gcJet_pt,gcforwJet_pt)") // won't store these in the tree
+      .Define("ak4Jet_eta","ROOT::VecOps::Concatenate(gcJet_eta,gcforwJet_eta)")
+      .Define("ak4Jet_phi","ROOT::VecOps::Concatenate(gcJet_phi,gcforwJet_phi)")
+      .Define("ak4Jet_mass","ROOT::VecOps::Concatenate(gcJet_mass,gcforwJet_mass)")
+      .Define("ak4Jet_puPass","ROOT::VecOps::Concatenate(gcJet_puPass,gcforwJet_puPass)")
+      .Define("ak4Jet_genJetIdx","ROOT::VecOps::Concatenate(gcJet_genJetIdx,gcforwJet_genJetIdx)")
+      .Define("puJetSF", pujetfunc, {"ak4Jet_pt","ak4Jet_eta","ak4Jet_phi","ak4Jet_mass","ak4Jet_puPass","GenJet_P4","ak4Jet_genJetIdx"}) 
       .Define("gcJet_hflav","reorder(Jet_hadronFlavour[goodcleanJets == true],gcJet_ptargsort)")
       .Define("btagWeights",btagshapefunc, {"gcJet_pt", "gcJet_eta", "gcJet_DeepFlav", "gcJet_hflav"});
   }
@@ -891,6 +892,7 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
       if(colName.BeginsWith("Electron") && !colName.Contains("genPartFlav")) continue;
       if(colName.BeginsWith("Jet") && !colName.Contains("rawFactor")) continue;
       if(colName.BeginsWith("FatJet") && !colName.Contains("rawFactor")) continue;
+      if(colName.BeginsWith("ak4Jet_")) continue;
       if(colName.BeginsWith("PPS") || colName.BeginsWith("Proton") || colName.BeginsWith("L1_")) continue;
       if(colName.BeginsWith("Gen") || colName.BeginsWith("Soft") || colName.BeginsWith("fixed")) continue;
       if(colName.BeginsWith("Sub") || colName.BeginsWith("RawPuppi") || colName.BeginsWith("Calo") || colName.BeginsWith("Chs")) continue;
