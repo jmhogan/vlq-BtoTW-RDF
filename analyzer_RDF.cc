@@ -118,23 +118,13 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   else if(year == "2018") {pubit = 2; deepjetL = 0.0490; yrstr = "2018"; yr = "18"; jecyr = "UL18"; jeryr = "Summer19UL18_JRV2"; jecver = "V5";}
   else std::cout << "ERROR: Can't parse the year to assign correctionLib json files. Expected 2016, 2016APV, 2017, or 2018. Got: " << year << std::endl;
 
-  time.Stop();
-  time.Print();
-  time.Start();
-
   auto pileupcorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/LUM/"+yrstr+"_UL/puWeights.json.gz");
-  time.Stop();
-  time.Print();
-  time.Start();
-  auto electroncorrset = CorrectionSet::from_file("jsonpog-integration/POG/EGM/"+yrstr+"_UL/electron.json");
-  time.Stop();
-  time.Print();
-  time.Start();
-  auto muoncorrset = CorrectionSet::from_file("jsonpog-integration/POG/MUO/"+yrstr+"_UL/muon_Z.json");
-  auto btagcorrset = CorrectionSet::from_file("jsonpog-integration/POG/BTV/"+yrstr+"_UL/btagging.json");
-  auto jetvetocorrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/jetvetomaps.json");
-  auto jmarcorrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/jmar.json");
-  auto metcorrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/met.json");
+  auto electroncorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/EGM/"+yrstr+"_UL/electron.json.gz");
+  auto muoncorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/MUO/"+yrstr+"_UL/muon_Z.json.gz");
+  auto btagcorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/BTV/"+yrstr+"_UL/btagging.json.gz");
+  auto jetvetocorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/JME/"+yrstr+"_UL/jetvetomaps.json.gz");
+  auto jmarcorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/JME/"+yrstr+"_UL/jmar.json.gz");
+  auto metcorrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/JME/"+yrstr+"_UL/met.json.gz");
 
   auto pileupcorr = pileupcorrset->at("Collisions"+yr+"_UltraLegacy_goldenJSON"); std::cout << "\t loaded pileup" << std::endl;
   auto electroncorr = electroncorrset->at("UL-Electron-ID-SF"); std::cout << "\t loaded elec id" << std::endl;
