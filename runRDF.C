@@ -1,13 +1,10 @@
 #include "lumiMask.cc"
 #include "analyzer_RDF.cc"
-#include "BPrime.cc"
-#include "cleanJet.cc"
-#include "cut_ptrel.cc"
-#include "dnnPrep.cc"
-#include "generatorInfo.cc"
-#include "utilities.cc"
-#include "W_t_reco.cc"
-#include "scalefactors.cc"
+#include "BPrime.cc"   // reco functions
+#include "cleanJet.cc" // assignleps
+#include "generatorInfo.cc" // generator truth
+#include "utilities.cc" // many things
+#include "W_t_reco.cc" // leptonic reco
 #include <string>
 #include <vector>
 #include <iostream>
