@@ -141,8 +141,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   auto metphicorr = metcorrset->at("phi_metphicorr_pfmet_mc"); std::cout << "\t loaded met phi xy" << std::endl;
   if(!isMC){metptcorr = metcorrset->at("pt_metphicorr_pfmet_data"); metphicorr = metcorrset->at("phi_metphicorr_pfmet_data");}
   
-  auto ak4corrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/jet_jerc.json"); 
-  auto ak8corrset = CorrectionSet::from_file("jsonpog-integration/POG/JME/"+yrstr+"_UL/fatJet_jerc.json"); 
+  auto ak4corrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/JME/"+yrstr+"_UL/jet_jerc.json.gz"); 
+  auto ak8corrset = CorrectionSet::from_file("/cvmfs/cms.cern.ch/rsync/cms-nanoAOD/jsonpog-integration/POG/JME/"+yrstr+"_UL/fatJet_jerc.json.gz"); 
   auto ak4corr = ak4corrset->compound().at("Summer19"+jecyr+"_"+jecver+"_MC_L1L2L3Res_AK4PFchs"); std::cout << "\t loaded jerc MC" << std::endl;
   auto ak4corrL1 = ak4corrset->at("Summer19"+jecyr+"_"+jecver+"_MC_L1FastJet_AK4PFchs"); std::cout << "\t loaded jerc L1" << std::endl;
   if(!isMC){ ak4corr = ak4corrset->compound().at("Summer19"+jecyr+"_Run"+jecera+"_"+jecver+"_DATA_L1L2L3Res_AK4PFchs"); std::cout << "\t loaded jerc data" << std::endl;}
@@ -185,9 +185,9 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
   auto recofunc = [electroncorr,muoncorr,yrstr](const float &pt, const float &eta, const bool &isEl){
     RVec<double> reco;
     if(isEl == 0) { 
-      reco = {muoncorr->evaluate({yrstr+"_UL",abs(eta),pt,"sf"}), 
-	      muoncorr->evaluate({yrstr+"_UL",abs(eta),pt,"systup"}), 
-	      muoncorr->evaluate({yrstr+"_UL",abs(eta),pt,"systdown"})};
+      reco = {muoncorr->evaluate({abs(eta),pt,"nominal"}), 
+	      muoncorr->evaluate({abs(eta),pt,"systup"}), 
+	      muoncorr->evaluate({abs(eta),pt,"systdown"})};
     }else{
       reco = {electroncorr->evaluate({yrstr,"sf","RecoAbove20",eta,pt}), 
 	      electroncorr->evaluate({yrstr,"sfup","RecoAbove20",eta,pt}), 
@@ -202,9 +202,9 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
       int etabin = (std::upper_bound(elsf_etas.begin(), elsf_etas.end(), eta) - elsf_etas.begin())-1;
       id = {elecidsfs[ptbin][etabin], elecidsfuncs[ptbin][etabin]};      
     }else{
-      id = {muonidcorr->evaluate({yrstr+"_UL",abs(eta),pt,"sf"}), 
-	    muonidcorr->evaluate({yrstr+"_UL",abs(eta),pt,"systup"}), 
-	    muonidcorr->evaluate({yrstr+"_UL",abs(eta),pt,"systdown"})};
+      id = {muonidcorr->evaluate({abs(eta),pt,"nominal"}), 
+	    muonidcorr->evaluate({abs(eta),pt,"systup"}), 
+	    muonidcorr->evaluate({abs(eta),pt,"systdown"})};
     }
     return id;
   }; 
@@ -712,7 +712,6 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("gcJet_eta", "reorder(cleanJet_eta[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_phi", "reorder(cleanJet_phi[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_mass", "reorder(cleanJet_mass[goodcleanJets == true],gcJet_ptargsort)")
-    .Define("gcJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_puPass","reorder(cleanJet_puPass[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_DeepFlav", "reorder(Jet_btagDeepFlavB[goodcleanJets == true],gcJet_ptargsort)")
     .Define("gcJet_DeepFlavL", Form("gcJet_DeepFlav > %f",deepjetL)) 
@@ -745,7 +744,6 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("gcforwJet_eta", "reorder(cleanJet_eta[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_phi", "reorder(cleanJet_phi[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_mass", "reorder(cleanJet_mass[goodcleanForwardJets == true],gcforwJet_ptargsort)")
-    .Define("gcforwJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_puPass","reorder(cleanJet_puPass[goodcleanForwardJets == true],gcforwJet_ptargsort)")
     .Define("gcforwJet_DeepFlav", "reorder(Jet_btagDeepFlavB[goodcleanForwardJets == true],gcforwJet_ptargsort)");
 
@@ -778,6 +776,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
       .Define("gcFatJet_hadronFlavour","reorder(FatJet_hadronFlavour[goodcleanFatJets == true],gcFatJet_ptargsort)")
       .Define("gcFatJet_genmatch", Form("FatJet_matching(\"%s\", gcFatJet_eta, gcFatJet_phi, NFatJets, gcFatJet_hadronFlavour, nGenPart, GenPart_pdgId, GenPart_phi, GenPart_eta, GenPart_genPartIdxMother, t_bkg_idx, W_bkg_idx)",sample.c_str()))
       .Define("gcOSFatJet_genmatch", "gcFatJet_genmatch[OS_gcFatJets==true]")
+      .Define("gcJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanJets == true],gcJet_ptargsort)")
+      .Define("gcforwJet_genJetIdx","reorder(Jet_genJetIdx[goodcleanForwardJets == true],gcforwJet_ptargsort)")
       .Define("leptonRecoSF", recofunc, {"lepton_pt","lepton_eta","isEl"})
       .Define("leptonIDSF", idfunc, {"lepton_pt","lepton_eta","isEl"})
       .Define("leptonIsoSF", isofunc, {"lepton_pt","lepton_eta","isEl"})

@@ -2,12 +2,9 @@
 #include "analyzer_RDF.cc"
 #include "BPrime.cc"
 #include "cleanJet.cc"
-#include "cut_ptrel.cc"
-#include "dnnPrep.cc"
 #include "generatorInfo.cc"
 #include "utilities.cc"
 #include "W_t_reco.cc"
-#include "scalefactors.cc"
 #include <string>
 #include <vector>
 #include <iostream>
