@@ -163,22 +163,25 @@ rdf::rdf(string inputFileName, string testNum1, string testNum2, string yearIn) 
   }
 
   year = yearIn; // May need to change this line to get things to work
-
+  
   TObjArray *tokens = sampleName.Tokenize("/");
   sample = ((TObjString *)(tokens->At(5)))->String();
+  string ver;
   if(!isMC){ 
     string runera = (((TObjString *)(tokens->At(4)))->String()).Data();
     string process = (((TObjString *)(tokens->At(7)))->String()).Data();
     era = runera.back();
-    if(year == "2016APV" && era == "B" && process.find("ver1") != std::string::npos) era = "A";
+    ver = process.substr(process.find("_")+1,2);
   } 
   delete tokens;
 
   jecera = era;
-  if(year == "2016" && !isMC) jecera = "FGH";
-  if(year == "2016APV" && !isMC){
-    if(era == "A" or era == "B" or era == "C" or era == "D") jecera = "BCD";
-    else jecera = "EF";
+  if(!isMC){
+    if(year == "2022") jecera = "CD";
+    else if(year == "2023"){
+      if(ver != "v4") jecera = "Cv123";
+      else jecera = "Cv4";
+    }
   }
 
   if(isMC){
@@ -189,7 +192,7 @@ rdf::rdf(string inputFileName, string testNum1, string testNum2, string yearIn) 
 
   btagpts = {15.0, 20.0, 30.0, 50.0, 70.0, 100.0, 150.0, 200.0, 300.0, 400.0, 500.0, 600.0, 800.0, 1000.0, 1200.0, 99999.0};
 
-  if(year == "2016APV"){
+  if(year == "2022"){
 
     btageffs = { // B, C, Light
       {0.829835, 0.534866, 0.510229},
@@ -265,7 +268,7 @@ rdf::rdf(string inputFileName, string testNum1, string testNum2, string yearIn) 
 		  {0.0288, 0.04914, 0.02008},
 		  {0.04551, 0.06189, 0.04008},
     };
-  }else if(year == "2016"){
+  }else if(year == "2022EE"){
 
     btageffs = { // B, C, Light
       {0.849801, 0.565951, 0.519292},
@@ -341,7 +344,7 @@ rdf::rdf(string inputFileName, string testNum1, string testNum2, string yearIn) 
 	{0.02901, 0.04605, 0.14282},
 	{0.04571, 0.06245, 0.03904},
     };
-  }else if(year == "2017"){
+  }else if(year == "2023"){
 
     btageffs = {
       {0.859705, 0.555959, 0.492094},
