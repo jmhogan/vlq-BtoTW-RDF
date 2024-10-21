@@ -20,7 +20,7 @@ void runRDF(string testNum1, string testNum2, string inputFile, string year)
   //t.analyzer_RDF(testNum1);
 
   bool isData = false;
-  if(inputFile.find("Single") != std::string::npos || inputFile.find("EGamma") != std::string::npos) isData = true;
+  if(inputFile.find("Single") != std::string::npos || inputFile.find("EGamma") != std::string::npos || inputFile.find("Muon") != std::string::npos || inputFile.find("dataset") != std::string::npos) isData = true;
 
   if(isData) t.analyzer_RDF(testNum1,"Nominal");
   else{

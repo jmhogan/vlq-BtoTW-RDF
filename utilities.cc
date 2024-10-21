@@ -47,7 +47,7 @@ auto leptonicCheck(string sample, int trueLeptonicT, int trueLeptonicW)
   return trueLeptonicMode;
 };
 
-auto Electron_cutBasedIdNoIso_tight(unsigned int nElectron, RVec<int> &Electron_vidNestedWPBitmap, RVec<int> &Electron_cutBased, RVec<float> &Electron_pfRelIso03_all, RVec<float> &eta, RVec<float> &pt, RVec<float> &sieie, RVec<float> &ooemoop)
+auto Electron_cutBasedIdNoIso_tight(unsigned int nElectron, RVec<int> &Electron_vidNestedWPBitmap, RVec<unsigned char> &Electron_cutBased, RVec<float> &Electron_pfRelIso03_all, RVec<float> &eta, RVec<float> &pt, RVec<float> &sieie, RVec<float> &ooemoop)
 {
   // VID compressed bitmap (MinPtCut,GsfEleSCEtaMultiRangeCut,GsfEleDEtaInSeedCut,GsfEleDPhiInCut,GsfEleFull5x5SigmaIEtaIEtaCut,GsfEleHadronicOverEMEnergyScaledCut,GsfEleEInverseMinusPInverseCut,GsfEleRelPFIsoScaledCut,GsfEleConversionVetoCut,GsfEleMissingHitsCut), 3 bits per cut
 
