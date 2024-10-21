@@ -8,7 +8,7 @@
 using namespace std;
 using namespace ROOT::VecOps;
 
-auto Bprime_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_status, RVec<int> &GenPart_statusFlags)
+auto Bprime_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<short> &GenPart_genPartIdxMother, RVec<int> &GenPart_status, RVec<unsigned short> &GenPart_statusFlags)
 {
   RVec<float> BPrimeInfo(6, -999);
   if (sample.find("Bprime") == std::string::npos)
@@ -43,7 +43,7 @@ auto Bprime_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pd
 // ----------------------------------------------------
 //           t truth extraction:
 // ----------------------------------------------------
-auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_status)
+auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<short> &GenPart_genPartIdxMother, RVec<int> &GenPart_status)
 {
   RVec<float> t_gen_info(30, -999);
   if (sample.find("Bprime") == std::string::npos)
@@ -172,7 +172,7 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
 // ----------------------------------------------------
 //           W truth extraction:
 // ----------------------------------------------------
-auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_status, int daughterW_gen_pdgId)
+auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<short> &GenPart_genPartIdxMother, RVec<int> &GenPart_status, int daughterW_gen_pdgId)
 {
   RVec<float> W_gen_info(19, -999);
   if (sample.find("Bprime") == std::string::npos)
@@ -334,7 +334,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
 //           W,t truth extraction for bkg:
 // ----------------------------------------------------
 
-auto t_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_statusFlags)
+auto t_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<short> &GenPart_genPartIdxMother, RVec<unsigned short> &GenPart_statusFlags)
 {
   // if (sample.find("Bprime") != std::string::npos)
   // {
@@ -419,7 +419,7 @@ auto t_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, R
   return t_daughter_idx;
 };
 
-auto W_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_statusFlags, RVec<int> &t_bkg_idx)
+auto W_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<short> &GenPart_genPartIdxMother, RVec<unsigned short> &GenPart_statusFlags, RVec<int> &t_bkg_idx)
 {
   // if (sample.find("Bprime") != std::string::npos)
   // {
@@ -486,7 +486,7 @@ auto W_bkg_idx(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, R
 
 // The following functions could probably all go to the plotting marco
 // Commented Method Only
-auto FatJet_matching_sig(string sample, RVec<float> &goodcleanFatJets, RVec<float> &gcFatJet_eta, RVec<float> &gcFatJet_phi, int NFatJets, RVec<int> &gcFatJet_hadronFlavour, RVec<int> &GenPart_pdgId, double daughterb_gen_eta, double daughterb_gen_phi, double tDaughter1_gen_eta, double tDaughter1_gen_phi, int tDaughter1_gen_pdgId, double tDaughter2_gen_eta, double tDaughter2_gen_phi, int tDaughter2_gen_pdgId, double WDaughter1_gen_eta, double WDaughter1_gen_phi, int WDaughter1_gen_pdgId, double WDaughter2_gen_eta, double WDaughter2_gen_phi, int WDaughter2_gen_pdgId)
+auto FatJet_matching_sig(string sample, RVec<float> &goodcleanFatJets, RVec<float> &gcFatJet_eta, RVec<float> &gcFatJet_phi, int NFatJets, RVec<unsigned char> &gcFatJet_hadronFlavour, RVec<int> &GenPart_pdgId, double daughterb_gen_eta, double daughterb_gen_phi, double tDaughter1_gen_eta, double tDaughter1_gen_phi, int tDaughter1_gen_pdgId, double tDaughter2_gen_eta, double tDaughter2_gen_phi, int tDaughter2_gen_pdgId, double WDaughter1_gen_eta, double WDaughter1_gen_phi, int WDaughter1_gen_pdgId, double WDaughter2_gen_eta, double WDaughter2_gen_phi, int WDaughter2_gen_pdgId)
 {
   RVec<int> matched_GenPart(NFatJets, -9);
   if (sample.find("Bprime") == std::string::npos)
@@ -555,7 +555,7 @@ auto FatJet_matching_sig(string sample, RVec<float> &goodcleanFatJets, RVec<floa
 };
 
 // Commented Method Only
-auto FatJet_matching(string sample, RVec<float> &gcFatJet_eta, RVec<float> &gcFatJet_phi, int NFatJets, RVec<int> &gcFatJet_hadronFlavour, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<int> &GenPart_genPartIdxMother, RVec<int> &t_bkg_idx, RVec<int> &W_bkg_idx) //, int trueLeptonicT, int trueLeptonicW)
+auto FatJet_matching(string sample, RVec<float> &gcFatJet_eta, RVec<float> &gcFatJet_phi, int NFatJets, RVec<unsigned char> &gcFatJet_hadronFlavour, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<short> &GenPart_genPartIdxMother, RVec<int> &t_bkg_idx, RVec<int> &W_bkg_idx) //, int trueLeptonicT, int trueLeptonicW)
 {
   RVec<int> matched_GenPart(NFatJets, -9);
   // if (sample.find("Bprime") != std::string::npos)
@@ -721,7 +721,7 @@ auto FatJet_matching(string sample, RVec<float> &gcFatJet_eta, RVec<float> &gcFa
 // ----------------------------------------------------
 
 // Commented Method Only
-auto genttbarMassCalc(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<int> &GenPart_genPartIdxMother, RVec<int> &GenPart_status)
+auto genttbarMassCalc(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, RVec<float> &GenPart_mass, RVec<float> &GenPart_pt, RVec<float> &GenPart_phi, RVec<float> &GenPart_eta, RVec<short> &GenPart_genPartIdxMother, RVec<int> &GenPart_status)
 {
     int returnVar = 0;
     if (sample.find("TTTo") != std::string::npos || sample.find("Mtt") != std::string::npos)
