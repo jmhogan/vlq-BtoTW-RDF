@@ -41,7 +41,7 @@ if makelists:
     queryStatement = '/cvmfs/cms.cern.ch/common/dasgoclient --limit=0 --query="file dataset = /'
         
     #if (os.path.isdir('NanoList')): os.system("rm -r NanoList")
-    if not os.path.exist("NanoList/"):
+    if not os.path.exists("NanoList/"):
         os.system("mkdir NanoList")
     
     # Loops through all the samples listed in samples.py
