@@ -47,6 +47,19 @@ auto leptonicCheck(string sample, int trueLeptonicT, int trueLeptonicW)
   return trueLeptonicMode;
 };
 
+auto elIP(RVec<float> &Electron_dz, RVec<float> &Electron_dxy, RVec<float> &Electron_eta)
+{
+  RVec<int> pass(Electron_dz.size(),0);
+  for(unsigned int i = 0; i < Electron_dz.size(); i++){
+    if(abs(Electron_eta[i]) <= 1.479){
+      if(abs(Electron_dz[i]) < 0.10 && abs(Electron_dxy[i]) < 0.05) pass[i] = 1;
+    }else{
+      if(abs(Electron_dz[i]) < 0.20 && abs(Electron_dxy[i]) < 0.10) pass[i] = 1;
+    }
+  }
+  return pass;
+}
+
 auto Electron_cutBasedIdNoIso_tight(unsigned int nElectron, RVec<int> &Electron_vidNestedWPBitmap, RVec<int> &Electron_cutBased, RVec<float> &Electron_pfRelIso03_all, RVec<float> &eta, RVec<float> &pt, RVec<float> &sieie, RVec<float> &ooemoop)
 {
   // VID compressed bitmap (MinPtCut,GsfEleSCEtaMultiRangeCut,GsfEleDEtaInSeedCut,GsfEleDPhiInCut,GsfEleFull5x5SigmaIEtaIEtaCut,GsfEleHadronicOverEMEnergyScaledCut,GsfEleEInverseMinusPInverseCut,GsfEleRelPFIsoScaledCut,GsfEleConversionVetoCut,GsfEleMissingHitsCut), 3 bits per cut
