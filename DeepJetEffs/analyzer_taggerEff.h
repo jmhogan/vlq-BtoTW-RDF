@@ -23,13 +23,10 @@
 #include "TLorentzVector.h"
 #include "ROOT/RDataFrame.hxx"
 #include "ROOT/RVec.hxx"
-#include "../correctionlib/include/correction.h"
 
 enum shift : char;
 
 using namespace std;
-using namespace ROOT::VecOps;
-using correction::CorrectionSet;
 
 class rdf
 {
@@ -40,31 +37,18 @@ private:
   Int_t fCurrent; //! current Tree number in a TChain
   vector<string> files;
 
-
-  Bool_t isSig;
-  Bool_t isTOP;
-  Bool_t isMadgraphBkg; // W, Z, QCD
-  Bool_t isMC;
-  Bool_t isSM;
-  Bool_t isSE;
-  Bool_t isTT;
-  Bool_t isVV;
-  Bool_t isTTincMtt0to1000;
-  Bool_t isTTincMtt0to700;
-  Bool_t isTTincMtt700to1000;
-  Bool_t isTTincMtt1000toInf;
   string sample;
   string year;
   string era;
   string jecera;
+  bool   isMC;
 
   // Fixed size dimensions of array or collections stored in the TTree if any.
 public:
   // Main Methods
   rdf(string inputFileName, string testNum1, string testNum2, string yearIn);
-  RVec<RVec<float>> cleanJets(RVec<TLorentzVector> &jt_p4, RVec<float> &jt_rf, RVec<TLorentzVector> &mu_p4, RVec<int> mu_jetid, RVec<TLorentzVector> &el_p4, RVec<int> &el_jetid);
   virtual ~rdf();
-  virtual void analyzer_taggerEff(TString testNum, TString jesvar);
+  virtual void analyzer_RDF(TString testNum, TString jesvar);
 };
 
 #endif
@@ -101,33 +85,33 @@ rdf::rdf(string inputFileName, string testNum1, string testNum2, string yearIn) 
   TString sampleName = file;
   cout << "Sample Name: " << sampleName << endl;
 
-  // Parse the incoming file names to assign labels  
-  isSig = (sampleName.Contains("Bprime"));
-  isMadgraphBkg = (sampleName.Contains("QCD") || sampleName.Contains("madgraphMLM"));
-  isTOP = (sampleName.Contains("Mtt") || sampleName.Contains("ST") || sampleName.Contains("ttZ") || sampleName.Contains("ttW") || sampleName.Contains("ttH") || sampleName.Contains("TTTo"));
-  isTT = (sampleName.Contains("TT_Tune") || sampleName.Contains("Mtt") || sampleName.Contains("TTTo"));
-  isVV = (sampleName.Contains("WW_") || sampleName.Contains("WZ_") || sampleName.Contains("ZZ_"));
   isMC = !(sampleName.Contains("Single") || sampleName.Contains("Data18") || sampleName.Contains("EGamma"));
-  isSM = sampleName.Contains("SingleMuon");
-  isSE = (sampleName.Contains("SingleElectron") || sampleName.Contains("EGamma"));
-
-  year = yearIn; // May need to change this line to get things to work
-
+  year = yearIn;
+  
   TObjArray *tokens = sampleName.Tokenize("/");
   sample = ((TObjString *)(tokens->At(5)))->String();
+  string ver;
   if(!isMC){ 
     string runera = (((TObjString *)(tokens->At(4)))->String()).Data();
     string process = (((TObjString *)(tokens->At(7)))->String()).Data();
     era = runera.back();
-    if(year == "2016APV" && era == "B" && process.find("ver1") != std::string::npos) era = "A";
-  }
+    ver = process.substr(process.find("_")+1,2);
+  } 
   delete tokens;
 
   jecera = era;
-  if(year == "2016" && !isMC) jecera = "FGH";
-  if(year == "2016APV" && !isMC){
-    if(era == "A" or era == "B" or era == "C" or era == "D") jecera = "BCD";
-    else jecera = "EF";
+  if(!isMC){
+    if(year == "2022") jecera = "CD";
+    else if(year == "2023"){
+      if(ver != "v4") jecera = "Cv123";
+      else jecera = "Cv4";
+    }
+  }
+
+  if(isMC){
+    if(sampleName.Contains("_ext1")) era = "ext1";
+    if(sampleName.Contains("_ext2")) era = "ext2";
+    if(sampleName.Contains("_ext3")) era = "ext3";
   }
 
 }
