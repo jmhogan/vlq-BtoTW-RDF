@@ -6,7 +6,6 @@
 
 #define rdf_cxx
 #include "analyzer_taggerEff.h"
-#include "lumiMask.h"
 #include "ROOT/RDataFrame.hxx"
 #include "ROOT/RVec.hxx"
 #include "Math/Vector4D.h"
@@ -33,7 +32,7 @@ using namespace std;
 
 void rdf::analyzer_taggerEff(TString testNum, TString jesvar)
 {
-  //  ROOT::EnableImplicitMT();
+  ROOT::EnableImplicitMT();
   TStopwatch time;
   time.Start();
   string sample = this->sample;
@@ -85,12 +84,12 @@ void rdf::analyzer_taggerEff(TString testNum, TString jesvar)
 
   double ptbins[16] = {15,20,30,50,70,100,150,200,300,400,500,600,800,1000,1200,1500};
 
-  // make denominator histograms from the flavor-specific pt sublists
+  // denominator histograms from the flavor-specific pt sublists
   auto h1 = JetSelect.Histo1D({"BEff_Dptbins_b",";Jet p_T (GeV);",15,ptbins},"bJet_pt","weight");
   auto h2 = JetSelect.Histo1D({"BEff_Dptbins_c",";Jet p_T (GeV);",15,ptbins},"cJet_pt","weight");
   auto h3 = JetSelect.Histo1D({"BEff_Dptbins_udsg",";Jet p_T (GeV);",15,ptbins},"lJet_pt","weight");
 
-  // make numerator histograms from the "flavor + passing tag" pt sublists
+  // numerator histograms from the "flavor + passing tag" pt sublists
   auto h4 = JetSelect.Histo1D({"BEffLoose_Nptbins_b",";Jet p_T (GeV);DeepJetL: b efficiency",15,ptbins},"bJet_pt_loose","weight");
   auto h5 = JetSelect.Histo1D({"BEffLoose_Nptbins_c",";Jet p_T (GeV);DeepJetL: c efficiency",15,ptbins},"cJet_pt_loose","weight");
   auto h6 = JetSelect.Histo1D({"BEffLoose_Nptbins_udsg",";Jet p_T (GeV);DeepJetL: udsg efficiency",15,ptbins},"lJet_pt_loose","weight");

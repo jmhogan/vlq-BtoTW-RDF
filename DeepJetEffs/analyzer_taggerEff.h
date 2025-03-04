@@ -24,8 +24,6 @@
 #include "ROOT/RDataFrame.hxx"
 #include "ROOT/RVec.hxx"
 
-enum shift : char;
-
 using namespace std;
 
 class rdf
@@ -48,7 +46,7 @@ public:
   // Main Methods
   rdf(string inputFileName, string testNum1, string testNum2, string yearIn);
   virtual ~rdf();
-  virtual void analyzer_RDF(TString testNum, TString jesvar);
+  virtual void analyzer_taggerEff(TString testNum, TString jesvar);
 };
 
 #endif
