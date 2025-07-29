@@ -11,74 +11,6 @@ class sample:
         self.samplename = samplename
         #self.color = color
 
-/Tau/Run2022A-22Sep2023-v1/NANOAOD
-/Tau/Run2022B-22Sep2023-v1/NANOAOD
-/Tau/Run2022C-22Sep2023-v1/NANOAOD
-/Tau/Run2022D-22Sep2023-v1/NANOAOD
-/Tau/Run2022E-22Sep2023-v1/NANOAOD
-/Tau/Run2022F-22Sep2023-v1/NANOAOD
-/Tau/Run2022G-22Sep2023-v1/NANOAOD
-/Tau/Run2023B-22Sep2023-v1/NANOAOD
-/Tau/Run2023C-22Sep2023_v1-v2/NANOAOD
-/Tau/Run2023C-22Sep2023_v2-v1/NANOAOD
-/Tau/Run2023C-22Sep2023_v3-v1/NANOAOD
-/Tau/Run2023C-22Sep2023_v4-v1/NANOAOD
-/Tau/Run2023D-22Sep2023_v1-v1/NANOAOD
-/Tau/Run2023D-22Sep2023_v2-v1/NANOAOD
-/MuonEG/Run2022A-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022B-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022C-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022D-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022E-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022F-22Sep2023-v1/NANOAOD
-/MuonEG/Run2022G-22Sep2023-v1/NANOAOD
-/MuonEG/Run2023B-22Sep2023-v1/NANOAOD
-/MuonEG/Run2023C-22Sep2023_v1-v1/NANOAOD
-/MuonEG/Run2023C-22Sep2023_v2-v1/NANOAOD
-/MuonEG/Run2023C-22Sep2023_v3-v1/NANOAOD
-/MuonEG/Run2023C-22Sep2023_v4-v1/NANOAOD
-/MuonEG/Run2023D-22Sep2023_v1-v1/NANOAOD
-/MuonEG/Run2023D-22Sep2023_v2-v1/NANOAOD
-/TprimeTprimeto2T4Tau_MT-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/TprimeTprimeto2T4Tau_MT-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV-madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
 /WWZZ_3L_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
 /WWZZ_3L_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
 /WWZZ_3L_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
@@ -104,29 +36,6 @@ class sample:
 /ZZZ_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
 /ZZZ_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM
 /ZZZ_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2/NANOAODSIM
-
-/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6_ext1-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5_ext1-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM
-/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
-/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v3/NANOAODSIM
-/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
-/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
-/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
-/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
-/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
 
 /TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22EENanoAODv12-mg35x_130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
 /TTLNu-1Jets_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/Run3Summer22NanoAODv12-mg35x_130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
@@ -170,50 +79,26 @@ class sample:
 /TTTT_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
 
 
-Bprime_M1000_2022 = sample("Bprime_M1000_2022", "2022", "Bprime_M1000_2022NanoList.txt", "/BprimeBtoTW_M-1000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1000_2022EE = sample("Bprime_M1000_2022EE", "2022EE", "Bprime_M1000_2022EENanoList.txt", "/BprimeBtoTW_M-1000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1000_2023 = sample("Bprime_M1000_2023", "2023", "Bprime_M1000_2023NanoList.txt", "/BprimeBtoTW_M-1000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1000_2023BPix = sample("Bprime_M1000_2023BPix", "2023BPix", "Bprime_M1000_2023BPixNanoList.txt", "/BprimeBtoTW_M-1000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1200_2022 = sample("Bprime_M1200_2022", "2022", "Bprime_M1200_2022NanoList.txt", "/BprimeBtoTW_M-1200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1200_2022EE = sample("Bprime_M1200_2022EE", "2022EE", "Bprime_M1200_2022EENanoList.txt", "/BprimeBtoTW_M-1200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1200_2023 = sample("Bprime_M1200_2023", "2023", "Bprime_M1200_2023NanoList.txt", "/BprimeBtoTW_M-1200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1200_2023BPix = sample("Bprime_M1200_2023BPix", "2023BPix", "Bprime_M1200_2023BPixNanoList.txt", "/BprimeBtoTW_M-1200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1300_2022 = sample("Bprime_M1300_2022", "2022", "Bprime_M1300_2022NanoList.txt", "/BprimeBtoTW_M-1300_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1300_2022EE = sample("Bprime_M1300_2022EE", "2022EE", "Bprime_M1300_2022EENanoList.txt", "/BprimeBtoTW_M-1300_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1300_2023 = sample("Bprime_M1300_2023", "2023", "Bprime_M1300_2023NanoList.txt", "/BprimeBtoTW_M-1300_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1300_2023BPix = sample("Bprime_M1300_2023BPix", "2023BPix", "Bprime_M1300_2023BPixNanoList.txt", "/BprimeBtoTW_M-1300_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1400_2022 = sample("Bprime_M1400_2022", "2022", "Bprime_M1400_2022NanoList.txt", "/BprimeBtoTW_M-1400_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1400_2022EE = sample("Bprime_M1400_2022EE", "2022EE", "Bprime_M1400_2022EENanoList.txt", "/BprimeBtoTW_M-1400_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1400_2023 = sample("Bprime_M1400_2023", "2023", "Bprime_M1400_2023NanoList.txt", "/BprimeBtoTW_M-1400_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1400_2023BPix = sample("Bprime_M1400_2023BPix", "2023BPix", "Bprime_M1400_2023BPixNanoList.txt", "/BprimeBtoTW_M-1400_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1500_2022 = sample("Bprime_M1500_2022", "2022", "Bprime_M1500_2022NanoList.txt", "/BprimeBtoTW_M-1500_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1500_2022EE = sample("Bprime_M1500_2022EE", "2022EE", "Bprime_M1500_2022EENanoList.txt", "/BprimeBtoTW_M-1500_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1500_2023 = sample("Bprime_M1500_2023", "2023", "Bprime_M1500_2023NanoList.txt", "/BprimeBtoTW_M-1500_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1500_2023BPix = sample("Bprime_M1500_2023BPix", "2023BPix", "Bprime_M1500_2023BPixNanoList.txt", "/BprimeBtoTW_M-1500_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1600_2022 = sample("Bprime_M1600_2022", "2022", "Bprime_M1600_2022NanoList.txt", "/BprimeBtoTW_M-1600_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1600_2022EE = sample("Bprime_M1600_2022EE", "2022EE", "Bprime_M1600_2022EENanoList.txt", "/BprimeBtoTW_M-1600_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1600_2023 = sample("Bprime_M1600_2023", "2023", "Bprime_M1600_2023NanoList.txt", "/BprimeBtoTW_M-1600_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1600_2023BPix = sample("Bprime_M1600_2023BPix", "2023BPix", "Bprime_M1600_2023BPixNanoList.txt", "/BprimeBtoTW_M-1600_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1700_2022 = sample("Bprime_M1700_2022", "2022", "Bprime_M1700_2022NanoList.txt", "/BprimeBtoTW_M-1700_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1700_2022EE = sample("Bprime_M1700_2022EE", "2022EE", "Bprime_M1700_2022EENanoList.txt", "/BprimeBtoTW_M-1700_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1700_2023 = sample("Bprime_M1700_2023", "2023", "Bprime_M1700_2023NanoList.txt", "/BprimeBtoTW_M-1700_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1700_2023BPix = sample("Bprime_M1700_2023BPix", "2023BPix", "Bprime_M1700_2023BPixNanoList.txt", "/BprimeBtoTW_M-1700_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M1800_2022 = sample("Bprime_M1800_2022", "2022", "Bprime_M1800_2022NanoList.txt", "/BprimeBtoTW_M-1800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M1800_2022EE = sample("Bprime_M1800_2022EE", "2022EE", "Bprime_M1800_2022EENanoList.txt", "/BprimeBtoTW_M-1800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M1800_2023 = sample("Bprime_M1800_2023", "2023", "Bprime_M1800_2023NanoList.txt", "/BprimeBtoTW_M-1800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M1800_2023BPix = sample("Bprime_M1800_2023BPix", "2023BPix", "Bprime_M1800_2023BPixNanoList.txt", "/BprimeBtoTW_M-1800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M2000_2022 = sample("Bprime_M2000_2022", "2022", "Bprime_M2000_2022NanoList.txt", "/BprimeBtoTW_M-2000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M2000_2022EE = sample("Bprime_M2000_2022EE", "2022EE", "Bprime_M2000_2022EENanoList.txt", "/BprimeBtoTW_M-2000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M2000_2023 = sample("Bprime_M2000_2023", "2023", "Bprime_M2000_2023NanoList.txt", "/BprimeBtoTW_M-2000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M2000_2023BPix = sample("Bprime_M2000_2023BPix", "2023BPix", "Bprime_M2000_2023BPixNanoList.txt", "/BprimeBtoTW_M-2000_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M2200_2022 = sample("Bprime_M2200_2022", "2022", "Bprime_M2200_2022NanoList.txt", "/BprimeBtoTW_M-2200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M2200_2022EE = sample("Bprime_M2200_2022EE", "2022EE", "Bprime_M2200_2022EENanoList.txt", "/BprimeBtoTW_M-2200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M2200_2023 = sample("Bprime_M2200_2023", "2023", "Bprime_M2200_2023NanoList.txt", "/BprimeBtoTW_M-2200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M2200_2023BPix = sample("Bprime_M2200_2023BPix", "2023BPix", "Bprime_M2200_2023BPixNanoList.txt", "/BprimeBtoTW_M-2200_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
-Bprime_M800_2022 = sample("Bprime_M800_2022", "2022", "Bprime_M800_2022NanoList.txt", "/BprimeBtoTW_M-800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
-Bprime_M800_2022EE  = sample("Bprime_M800_2022EE", "2022EE", "Bprime_M800_2022EENanoList.txt", "/BprimeBtoTW_M-800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
-Bprime_M800_2023  = sample("Bprime_M800_2023", "2023", "Bprime_M800_2023NanoList.txt", "/BprimeBtoTW_M-800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
-Bprime_M800_2023BPix  = sample("Bprime_M800_2023BPix", "2023BPix", "Bprime_M800_2023BPixNanoList.txt", "/BprimeBtoTW_M-800_NWALO_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
+Bprime_M1000_2022 = sample("Bprime_M1000_2022", "2022", "Bprime_M1000_2022NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
+Bprime_M1000_2022EE = sample("Bprime_M1000_2022EE", "2022EE", "Bprime_M1000_2022EENanoList.txt", "/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
+Bprime_M1000_2023 = sample("Bprime_M1000_2023", "2023", "Bprime_M1000_2023NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
+Bprime_M1000_2023BPix = sample("Bprime_M1000_2023BPix", "2023BPix", "Bprime_M1000_2023BPixNanoList.txt", "/BprimeBprimeto2B4Tau_MB-1000_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
+Bprime_M1300_2022 = sample("Bprime_M1300_2022", "2022", "Bprime_M1300_2022NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
+Bprime_M1300_2022EE = sample("Bprime_M1300_2022EE", "2022EE", "Bprime_M1300_2022EENanoList.txt", "/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
+Bprime_M1300_2023 = sample("Bprime_M1300_2023", "2023", "Bprime_M1300_2023NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
+Bprime_M1300_2023BPix = sample("Bprime_M1300_2023BPix", "2023BPix", "Bprime_M1300_2023BPixNanoList.txt", "/BprimeBprimeto2B4Tau_MB-1300_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
+Bprime_M1600_2022 = sample("Bprime_M1600_2022", "2022", "Bprime_M1600_2022NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
+Bprime_M1600_2022EE = sample("Bprime_M1600_2022EE", "2022EE", "Bprime_M1600_2022EENanoList.txt", "/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
+Bprime_M1600_2023 = sample("Bprime_M1600_2023", "2023", "Bprime_M1600_2023NanoList.txt", "/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
+Bprime_M1600_2023BPix = sample("Bprime_M1600_2023BPix", "2023BPix", "Bprime_M1600_2023BPixNanoList.txt", "/BprimeBprimeto2B4Tau_MB-1600_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
+Bprime_M700_2022 = sample("Bprime_M700_2022", "2022", "Bprime_M700_2022NanoList.txt", "/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
+Bprime_M700_2022EE = sample("Bprime_M700_2022EE", "2022EE", "Bprime_M700_2022EENanoList.txt", "/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
+Bprime_M700_2023 = sample("Bprime_M700_2023", "2023", "Bprime_M700_2023NanoList.txt", "/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
+Bprime_M700_2023BPix = sample("Bprime_M700_2023BPix", "2023BPix", "Bprime_M700_2023BPixNanoList.txt", "/BprimeBprimeto2B4Tau_MB-700_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
+Bprime_M400_2022 = sample("Bprime_M400_2022", "2022", "Bprime_M400_2022NanoList.txt", "/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
+Bprime_M400_2022EE = sample("Bprime_M400_2022EE", "2022EE", "Bprime_M400_2022EENanoList.txt", "/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
+Bprime_M400_2023 = sample("Bprime_M400_2023", "2023", "Bprime_M400_2023NanoList.txt", "/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM")
+Bprime_M400_2023BPix = sample("Bprime_M400_2023BPix", "2023BPix", "Bprime_M400_2023BPixNanoList.txt", "/BprimeBprimeto2B4Tau_MB-400_MXi-2000_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM")
 
 DYPT402022 = sample("DYPT402022", "2022", "DYPT402022NanoList.txt", "/DYto2L-4Jets_MLL-50_PTLL-40to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
 DYPT402022EE = sample("DYPT402022EE", "2022EE", "DYPT402022EENanoList.txt", "/DYto2L-4Jets_MLL-50_PTLL-40to100_TuneCP5_13p6TeV_madgraphMLM-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
@@ -304,6 +189,30 @@ SingleMuonRun2023BPixD01  = sample("SingleMuonRun2023BPixD01", "2023BPix", "Sing
 SingleMuonRun2023BPixD02  = sample("SingleMuonRun2023BPixD02", "2023BPix", "SingleMuonRun2023BPixD022023BPixNanoList.txt", "/Muon0/Run2023D-22Sep2023_v2-v1/NANOAOD")
 SingleMuonRun2023BPixD11  = sample("SingleMuonRun2023BPixD11", "2023BPix", "SingleMuonRun2023BPixD112023BPixNanoList.txt", "/Muon1/Run2023D-22Sep2023_v1-v1/NANOAOD")
 SingleMuonRun2023BPixD12  = sample("SingleMuonRun2023BPixD12", "2023BPix", "SingleMuonRun2023BPixD122023BPixNanoList.txt", "/Muon1/Run2023D-22Sep2023_v2-v1/NANOAOD")
+
+MuonEGRun2022C = sample("MuonEGRun2022C", "2022", "MuonEGRun2022C2022NanoList.txt", "/MuonEG/Run2022C-22Sep2023-v1/NANOAOD")
+MuonEGRun2022D = sample("MuonEGRun2022D", "2022", "MuonEGRun2022D2022NanoList.txt", "/MuonEG/Run2022D-22Sep2023-v1/NANOAOD")
+MuonEGRun2022EEE  = sample("MuonEGRun2022EEE", "2022EE", "MuonEGRun2022EEE2022EENanoList.txt", "/MuonEG/Run2022E-22Sep2023-v1/NANOAOD")
+MuonEGRun2022EEF  = sample("MuonEGRun2022EEF", "2022EE", "MuonEGRun2022EEF2022EENanoList.txt", "/MuonEG/Run2022F-22Sep2023-v1/NANOAOD")
+MuonEGRun2022EEG  = sample("MuonEGRun2022EEG", "2022EE", "MuonEGRun2022EEG2022EENanoList.txt", "/MuonEG/Run2022G-22Sep2023-v1/NANOAOD")
+MuonEGRun2023C01  = sample("MuonEGRun2023C01", "2023", "MuonEGRun2023C012023NanoList.txt", "/MuonEG/Run2023C-22Sep2023_v1-v1/NANOAOD")
+MuonEGRun2023C02  = sample("MuonEGRun2023C02", "2023", "MuonEGRun2023C022023NanoList.txt", "/MuonEG/Run2023C-22Sep2023_v2-v1/NANOAOD")
+MuonEGRun2023C03  = sample("MuonEGRun2023C03", "2023", "MuonEGRun2023C032023NanoList.txt", "/MuonEG/Run2023C-22Sep2023_v3-v1/NANOAOD")
+MuonEGRun2023C04  = sample("MuonEGRun2023C04", "2023", "MuonEGRun2023C042023NanoList.txt", "/MuonEG/Run2023C-22Sep2023_v4-v1/NANOAOD")
+MuonEGRun2023BPixD01  = sample("MuonEGRun2023BPixD01", "2023BPix", "MuonEGRun2023BPixD012023BPixNanoList.txt", "/MuonEG/Run2023D-22Sep2023_v1-v1/NANOAOD")
+MuonEGRun2023BPixD02  = sample("MuonEGRun2023BPixD02", "2023BPix", "MuonEGRun2023BPixD022023BPixNanoList.txt", "/MuonEG/Run2023D-22Sep2023_v2-v1/NANOAOD")
+
+TauRun2022C = sample("TauRun2022C", "2022", "TauRun2022C2022NanoList.txt", "/Tau/Run2022C-22Sep2023-v1/NANOAOD")
+TauRun2022D = sample("TauRun2022D", "2022", "TauRun2022D2022NanoList.txt", "/Tau/Run2022D-22Sep2023-v1/NANOAOD")
+TauRun2022EEE  = sample("TauRun2022EEE", "2022EE", "TauRun2022EEE2022EENanoList.txt", "/Tau/Run2022E-22Sep2023-v1/NANOAOD")
+TauRun2022EEF  = sample("TauRun2022EEF", "2022EE", "TauRun2022EEF2022EENanoList.txt", "/Tau/Run2022F-22Sep2023-v1/NANOAOD")
+TauRun2022EEG  = sample("TauRun2022EEG", "2022EE", "TauRun2022EEG2022EENanoList.txt", "/Tau/Run2022G-22Sep2023-v1/NANOAOD")
+TauRun2023C01  = sample("TauRun2023C01", "2023", "TauRun2023C012023NanoList.txt", "/Tau/Run2023C-22Sep2023_v1-v2/NANOAOD")
+TauRun2023C02  = sample("TauRun2023C02", "2023", "TauRun2023C022023NanoList.txt", "/Tau/Run2023C-22Sep2023_v2-v1/NANOAOD")
+TauRun2023C03  = sample("TauRun2023C03", "2023", "TauRun2023C032023NanoList.txt", "/Tau/Run2023C-22Sep2023_v3-v1/NANOAOD")
+TauRun2023C04  = sample("TauRun2023C04", "2023", "TauRun2023C042023NanoList.txt", "/Tau/Run2023C-22Sep2023_v4-v1/NANOAOD")
+TauRun2023BPixD01  = sample("TauRun2023BPixD01", "2023BPix", "TauRun2023BPixD012023BPixNanoList.txt", "/Tau/Run2023D-22Sep2023_v1-v1/NANOAOD")
+TauRun2023BPixD02  = sample("TauRun2023BPixD02", "2023BPix", "TauRun2023BPixD022023BPixNanoList.txt", "/Tau/Run2023D-22Sep2023_v2-v1/NANOAOD")
 
 STs2022 = sample("STs2022", "2022", "STs2022NanoList.txt", "/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
 STs2022EE = sample("STs2022EE", "2022EE", "STs2022EENanoList.txt", "/TBbartoLplusNuBbar-s-channel-4FS_TuneCP5_13p6TeV_amcatnlo-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
@@ -448,6 +357,22 @@ WW1L2022EE = sample("WW1L2022EE", "2022EE", "WW1L2022EENanoList.txt", "/WWtoLNu2
 WW1L2022EEext = sample("WW1L2022EEext", "2022EE", "WW1L2022EEextNanoList.txt", "/WWtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6_ext1-v2/NANOAODSIM")
 WW1L2023 = sample("WW1L2023", "2023", "WW1L2023NanoList.txt", "/WWtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM")
 WW1L2023BPix = sample("WW1L2023BPix", "2023BPix", "WW1L2023BPixNanoList.txt", "/WWtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM")
+
+/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
+/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
+/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
+/WWto2L2Nu-2Jets_OS_noTop_EW-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6_ext1-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5_ext1-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v2/NANOAODSIM
+/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM
+/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
+/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
+/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
+/WZto3LNu-2Jets_EWK-QCD_TuneCP5_13p6TeV_madgraph-madspin-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+
 WZ2L2022 = sample("WZ2L2022", "2022", "WZ2L2022NanoList.txt", "/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM")
 WZ2L2022ext = sample("WZ2L2022ext", "2022", "WZ2L2022extNanoList.txt", "/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5_ext1-v2/NANOAODSIM")
 WZ2L2022EE = sample("WZ2L2022EE", "2022EE", "WZ2L2022EENanoList.txt", "/WZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM")
@@ -468,6 +393,17 @@ ZZ2022EE = sample("ZZ2022EE", "2022EE", "ZZ2022EENanoList.txt", "/ZZto2L2Q_TuneC
 ZZ2022EEext = sample("ZZ2022EEext", "2022EE", "ZZ2022EEextNanoList.txt", "/ZZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6_ext1-v2/NANOAODSIM")
 ZZ2023 = sample("ZZ2023", "2023", "ZZ2023NanoList.txt", "/ZZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v3/NANOAODSIM")
 ZZ2023BPix = sample("ZZ2023BPix", "2023BPix", "ZZ2023BPixNanoList.txt", "/ZZto2L2Q_TuneCP5_13p6TeV_powheg-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v2-v3/NANOAODSIM")
+
+/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
+/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
+/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v3/NANOAODSIM
+/ZZto2L2Nu-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22EENanoAODv12-130X_mcRun3_2022_realistic_postEE_v6-v2/NANOAODSIM
+/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer22NanoAODv12-130X_mcRun3_2022_realistic_v5-v2/NANOAODSIM
+/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23BPixNanoAODv12-130X_mcRun3_2023_realistic_postBPix_v6-v2/NANOAODSIM
+/ZZto4L-2Jets_EW-QCD_TuneCP5_13p6TeV_madgraph-pythia8/Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v15-v2/NANOAODSIM
+
+
 
 samples_data = {
     "SingleElecRun2022C":      SingleElecRun2022C,      
@@ -504,53 +440,51 @@ samples_data = {
     "SingleMuonRun2023BPixD02":SingleMuonRun2023BPixD02,
     "SingleMuonRun2023BPixD11":SingleMuonRun2023BPixD11,
     "SingleMuonRun2023BPixD12":SingleMuonRun2023BPixD12,
+    "MuonEGRun2022C":      MuonEGRun2022C,      
+    "MuonEGRun2022D":      MuonEGRun2022D,      
+    "MuonEGRun2022EEE":    MuonEGRun2022EEE,    
+    "MuonEGRun2022EEF":    MuonEGRun2022EEF,    
+    "MuonEGRun2022EEG":    MuonEGRun2022EEG,    
+    "MuonEGRun2023C01":    MuonEGRun2023C01,    
+    "MuonEGRun2023C02":    MuonEGRun2023C02,    
+    "MuonEGRun2023C03":    MuonEGRun2023C03,    
+    "MuonEGRun2023C04":    MuonEGRun2023C04,    
+    "MuonEGRun2023BPixD01":MuonEGRun2023BPixD01,
+    "MuonEGRun2023BPixD02":MuonEGRun2023BPixD02,
+    "TauRun2022C":      TauRun2022C,      
+    "TauRun2022D":      TauRun2022D,      
+    "TauRun2022EEE":    TauRun2022EEE,    
+    "TauRun2022EEF":    TauRun2022EEF,    
+    "TauRun2022EEG":    TauRun2022EEG,    
+    "TauRun2023C01":    TauRun2023C01,    
+    "TauRun2023C02":    TauRun2023C02,    
+    "TauRun2023C03":    TauRun2023C03,    
+    "TauRun2023C04":    TauRun2023C04,    
+    "TauRun2023BPixD01":TauRun2023BPixD01,
+    "TauRun2023BPixD02":TauRun2023BPixD02,
 }
 
-samples={
+samples_mc={
     "Bprime_M1000_2022":    Bprime_M1000_2022,    
     "Bprime_M1000_2022EE":  Bprime_M1000_2022EE,  
     "Bprime_M1000_2023":    Bprime_M1000_2023,    
     "Bprime_M1000_2023BPix":Bprime_M1000_2023BPix,
-    "Bprime_M1200_2022":    Bprime_M1200_2022,    
-    "Bprime_M1200_2022EE":  Bprime_M1200_2022EE,  
-    "Bprime_M1200_2023":    Bprime_M1200_2023,    
-    "Bprime_M1200_2023BPix":Bprime_M1200_2023BPix,
     "Bprime_M1300_2022":    Bprime_M1300_2022,    
     "Bprime_M1300_2022EE":  Bprime_M1300_2022EE,  
     "Bprime_M1300_2023":    Bprime_M1300_2023,    
     "Bprime_M1300_2023BPix":Bprime_M1300_2023BPix,
-    "Bprime_M1400_2022":    Bprime_M1400_2022,    
-    "Bprime_M1400_2022EE":  Bprime_M1400_2022EE,  
-    "Bprime_M1400_2023":    Bprime_M1400_2023,    
-    "Bprime_M1400_2023BPix":Bprime_M1400_2023BPix,
-    "Bprime_M1500_2022":    Bprime_M1500_2022,    
-    "Bprime_M1500_2022EE":  Bprime_M1500_2022EE,  
-    "Bprime_M1500_2023":    Bprime_M1500_2023,    
-    "Bprime_M1500_2023BPix":Bprime_M1500_2023BPix,
     "Bprime_M1600_2022":    Bprime_M1600_2022,    
     "Bprime_M1600_2022EE":  Bprime_M1600_2022EE,  
     "Bprime_M1600_2023":    Bprime_M1600_2023,    
     "Bprime_M1600_2023BPix":Bprime_M1600_2023BPix,
-    "Bprime_M1700_2022":    Bprime_M1700_2022,    
-    "Bprime_M1700_2022EE":  Bprime_M1700_2022EE,  
-    "Bprime_M1700_2023":    Bprime_M1700_2023,    
-    "Bprime_M1700_2023BPix":Bprime_M1700_2023BPix,
-    "Bprime_M1800_2022":    Bprime_M1800_2022,    
-    "Bprime_M1800_2022EE":  Bprime_M1800_2022EE,  
-    "Bprime_M1800_2023":    Bprime_M1800_2023,    
-    "Bprime_M1800_2023BPix":Bprime_M1800_2023BPix,
-    "Bprime_M2000_2022":    Bprime_M2000_2022,    
-    "Bprime_M2000_2022EE":  Bprime_M2000_2022EE,  
-    "Bprime_M2000_2023":    Bprime_M2000_2023,    
-    "Bprime_M2000_2023BPix":Bprime_M2000_2023BPix,
-    "Bprime_M2200_2022":    Bprime_M2200_2022,    
-    "Bprime_M2200_2022EE":  Bprime_M2200_2022EE,  
-    "Bprime_M2200_2023":    Bprime_M2200_2023,    
-    "Bprime_M2200_2023BPix":Bprime_M2200_2023BPix,
-    "Bprime_M800_2022":     Bprime_M800_2022,     
-    "Bprime_M800_2022EE ":  Bprime_M800_2022EE ,  
-    "Bprime_M800_2023":     Bprime_M800_2023,     
-    "Bprime_M800_2023BPix": Bprime_M800_2023BPix, 
+    "Bprime_M700_2022":    Bprime_M700_2022,    
+    "Bprime_M700_2022EE":  Bprime_M700_2022EE,  
+    "Bprime_M700_2023":    Bprime_M700_2023,    
+    "Bprime_M700_2023BPix":Bprime_M700_2023BPix,
+    "Bprime_M400_2022":    Bprime_M400_2022,    
+    "Bprime_M400_2022EE":  Bprime_M400_2022EE,  
+    "Bprime_M400_2023":    Bprime_M400_2023,    
+    "Bprime_M400_2023BPix":Bprime_M400_2023BPix,
     "DYPT402022":     DYPT402022,     
     "DYPT402022EE":   DYPT402022EE,   
     "DYPT402023":     DYPT402023,     
