@@ -47,34 +47,71 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
 {
   RVec<float> t_gen_info(30, -999);
   if (sample.find("Bprime") == std::string::npos)
-  {
-    return t_gen_info;
-    std::cout << "skipping t gen info" << std::endl;
-  }
+    {
+      return t_gen_info;
+      std::cout << "skipping t gen info" << std::endl;
+    }
+  
+  int VLQ_idx = -1;
+  int tFromVLQ_idx = -1;
+  for (unsigned int i = 0; i < nGenPart; i++)
+    {
+      if (abs(GenPart_pdgId[i]) != 6000007)
+	{
+	  continue;
+	}
+      VLQ_idx = i;
+    }
+  if(VLQ_idx == -1) VLQ_idx = 0; // grab the events without an explicit VLQ
+  for (unsigned int i = 0; i < nGenPart; i++)
+    {
+      if (abs(GenPart_pdgId[i]) != 6 && GenPart_genPartIdxMother[i] != VLQ_idx)
+	{
+	  continue;
+	}
+      tFromVLQ_idx = i;
+    } // get direct t daughter
 
+  int tgen = tFromVLQ_idx; // save index of the electron
+  for (unsigned int k = tFromVLQ_idx; k < nGenPart; k++)
+    {
+      if (GenPart_pdgId[k] != GenPart_pdgId[tFromVLQ_idx]) // matching ID particles
+	{
+	  continue;
+	}
+      if (GenPart_genPartIdxMother[k] != tgen) // linked as mother/daughter
+	{
+	  continue;
+	}
+      tgen = k; // take the last copy
+    }
+
+  //  cout << "TOP INFO: VLQ idx = " << VLQ_idx << ", top idx = " << tFromVLQ_idx << endl;
+  
+  // store t info
+  if(t_gen_info[0] == -999){
+    t_gen_info[0] = GenPart_pt[tgen];
+    t_gen_info[1] = GenPart_eta[tgen];
+    t_gen_info[2] = GenPart_phi[tgen];
+    t_gen_info[3] = GenPart_mass[tgen];
+    t_gen_info[4] = GenPart_pdgId[tgen];
+    t_gen_info[5] = GenPart_status[tgen];
+  }
+  
   int trueLeptonicT = -1;
   for (unsigned int i = 0; i < nGenPart; i++)
   {
     int id = GenPart_pdgId[i];
     int motherIdx = GenPart_genPartIdxMother[i];
 
-    if (abs(GenPart_pdgId[motherIdx]) != 6)
+    if (motherIdx != tgen)
     {
       continue;
     } // find t daughters
+
     if (abs(id) != 24 && abs(id) != 5)
     {
-      continue;
-    }
-
-    // store t info
-    if(t_gen_info[0] == -999){
-      t_gen_info[0] = GenPart_pt[motherIdx];
-      t_gen_info[1] = GenPart_eta[motherIdx];
-      t_gen_info[2] = GenPart_phi[motherIdx];
-      t_gen_info[3] = GenPart_mass[motherIdx];
-      t_gen_info[4] = GenPart_pdgId[motherIdx];
-      t_gen_info[5] = GenPart_status[motherIdx];
+      continue;      
     }
 
     int igen = i;
@@ -179,6 +216,55 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
   {
     return W_gen_info;
   }
+
+  int VLQ_idx = -1;
+  int WFromVLQ_idx = -1;
+  for (unsigned int i = 0; i < nGenPart; i++)
+    {
+      if (abs(GenPart_pdgId[i]) != 6000007)
+	{
+	  continue;
+	}
+      VLQ_idx = i;
+    }
+  if(VLQ_idx == -1) VLQ_idx = 0; // grab the events without an explicit VLQ
+  for (unsigned int i = 0; i < nGenPart; i++)
+    {
+      if (abs(GenPart_pdgId[i]) != 24 && GenPart_genPartIdxMother[i] != VLQ_idx)
+	{
+	  continue;
+	}
+      WFromVLQ_idx = i;
+    } // get direct W daughter
+
+  //  cout << "W INFO: VLQ idx = " << VLQ_idx << ", W idx = " << WFromVLQ_idx << endl;
+  
+  int wgen = WFromVLQ_idx; // save index of the electron
+  for (unsigned int k = WFromVLQ_idx; k < nGenPart; k++)
+    {
+      if (GenPart_pdgId[k] != GenPart_pdgId[WFromVLQ_idx]) // matching ID particles
+	{
+	  continue;
+	}
+      if (GenPart_genPartIdxMother[k] != wgen) // linked as mother/daughter
+	{
+	  continue;
+	}
+      wgen = k; // take the last copy
+    }
+
+  //  cout << "Found W from VLQ at idx " << wgen << endl;
+  
+  if (W_gen_info[0] == -999)
+    {
+      W_gen_info[0] = GenPart_pt[wgen];
+      W_gen_info[1] = GenPart_eta[wgen];
+      W_gen_info[2] = GenPart_phi[wgen];
+      W_gen_info[3] = GenPart_mass[wgen];
+      W_gen_info[4] = GenPart_pdgId[wgen];
+      W_gen_info[5] = GenPart_status[wgen];
+    }
+
   int trueLeptonicW = -1;
 
   std::vector<int> WdaughterIDs;
@@ -189,20 +275,10 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
     int id = GenPart_pdgId[i];
     int motherIdx = GenPart_genPartIdxMother[i];
 
-    if (abs(id) > 17 || GenPart_pdgId[motherIdx] != (-daughterW_gen_pdgId)) // id of this W has to be opposite id of top decay W...
+    if (abs(id) > 17 || motherIdx != wgen) // id of this W has to be opposite id of top decay W...
     {
       continue;
     } // look for daughters of W
-
-    if (W_gen_info[0] == -999)
-    {
-      W_gen_info[0] = GenPart_pt[motherIdx];
-      W_gen_info[1] = GenPart_eta[motherIdx];
-      W_gen_info[2] = GenPart_phi[motherIdx];
-      W_gen_info[3] = GenPart_mass[motherIdx];
-      W_gen_info[4] = GenPart_pdgId[motherIdx];
-      W_gen_info[5] = GenPart_status[motherIdx];
-    }
 
     int igen = i;
     for (unsigned int j = igen; j < nGenPart; j++)
@@ -224,6 +300,8 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
 
   if(WdaughterIDs.size() < 2){
     std::cout << "Didn't find 2 W daughters! " << WdaughterIDs.size() << std::endl;
+    cout << GenPart_pdgId[0] << " " << GenPart_pdgId[1] << " " << GenPart_pdgId[2] << " " << GenPart_pdgId[3] << " " << GenPart_pdgId[4] << " " << GenPart_pdgId[5] << endl;
+    cout << GenPart_genPartIdxMother[0] << " " << GenPart_genPartIdxMother[1] << " " << GenPart_genPartIdxMother[2] << " " << GenPart_genPartIdxMother[3] << " " << GenPart_genPartIdxMother[4] << " " << GenPart_genPartIdxMother[5] << endl;
     return W_gen_info;
   }
 
