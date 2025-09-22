@@ -323,24 +323,39 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     // an untagged true-top/W jet contributes (1 - SF*eff)/(1-eff) --> instructed by Fabio that ParticleNet SFs do not need this. 
     // no SFs exist for any other flavor, so they contribute 1
     // save all good AK8 weights, and then just OSFJ1 weight
-    RVec<float> pnetweights = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+    RVec<float> pnetweights = {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
     float topsf = 1.0; float topsfup = 1.0; float topsfdn = 1.0;
     float Wsf = 1.0; float Wsfup = 1.0; float Wsfdn = 1.0;
     int OSFJ1 = ROOT::VecOps::ArgMax(pt[OS]);
+    // if(pt.size() > 2 || OSFJ1 != 0){
+    //   std::cout << "Size check: pt has " << pt.size() << ", pt[OS] has " << pt[OS].size() << ", OSFJ1 index = " << OSFJ1 << std::endl;
+    // }
     for(unsigned int ijet = 0; ijet < pt.size(); ijet++){
-      if(match[ijet] == 6 && pt[ijet] > 300 && pt[ijet] < 1200 && abs(eta[ijet]) < 2.4){
-        topsf = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "nom", "1p0"}));
-        topsfup = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "up", "1p0"}));
-        topsfdn = static_cast<float>(topcorr->evaluate({eta[ijet], pt[ijet], "down", "1p0"}));
+      // if(pt.size() > 2 || OSFJ1 != 0){
+      // 	std::cout << "\t jet " << ijet << ", pt = " << pt[ijet] << ", is OS? " << OS[ijet] << std::endl;
+      // }
+      if(match[ijet] == 6 && pt[ijet] > 300 && abs(eta[ijet]) < 2.4){
+	float pttemp = pt[ijet];
+	if(pttemp >= 1200) pttemp = 1199.0;
+        topsf = static_cast<float>(topcorr->evaluate({eta[ijet], pttemp, "nom", "1p0"}));
+        topsfup = static_cast<float>(topcorr->evaluate({eta[ijet], pttemp, "up", "1p0"}));
+        topsfdn = static_cast<float>(topcorr->evaluate({eta[ijet], pttemp, "down", "1p0"}));
         if(tag[ijet] == 1 || tag[ijet] == 3){ // top tagged
-          pnetweights[0] *= topsf;
-          pnetweights[1] *= topsfup;
-          pnetweights[2] *= topsfdn;
-          if(ijet == OSFJ1){
-            pnetweights[6] *= topsf;
-            pnetweights[7] *= topsfup;
-            pnetweights[8] *= topsfdn;
-          }
+	  if(pt[ijet] < 1200){
+	    pnetweights[0] *= topsf;
+	    pnetweights[1] *= topsfup;
+	    pnetweights[2] *= topsfdn;
+	    if(ijet == OSFJ1){
+	      //if(pt[ijet] - pt[OS][OSFJ1] < 1e-3){
+	      pnetweights[6] *= topsf;
+	      pnetweights[7] *= topsfup;
+	      pnetweights[8] *= topsfdn;
+	    }
+	  }
+	  if(ijet == OSFJ1){
+	    //if(pt[ijet] - pt[OS][OSFJ1] < 1e-3){
+	    pnetweights[12] *= topsf;
+	  }
         // }else{
         //   int ptbin = (std::upper_bound(pnetpts.begin(), pnetpts.end(), pt[ijet]) - pnetpts.begin())-1;
         //   float eff = pnet_t_t[samplebin][ptbin];
@@ -721,7 +736,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("minDR_lepJets","ROOT::VecOps::Min(DR_gcJets_central)")
     .Define("ptrel_atMinDR_lepJets","reorder(ptrel_lepJets[goodcleanJets == true],gcJet_ptargsort)[ROOT::VecOps::ArgMin(DR_gcJets_central)]")
     .Define("OS_gcJets","DR_gcJets_central > TMath::Pi()/2")
-    .Define("SS_gcJets","DR_gcJets_central <= TMath::Pi()/2")
+    //.Define("SS_gcJets","DR_gcJets_central <= TMath::Pi()/2")
+    .Define("SS_gcJets","DR_gcJets_central <= 1.2")
     .Define("NOS_gcJets_central","(int) Sum(OS_gcJets)")
     .Define("NSS_gcJets_central","(int) Sum(SS_gcJets)")
     .Define("gcOSJet_pt","gcJet_pt[OS_gcJets == true]")
@@ -758,7 +774,8 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("DR_gcFatJets", "reorder(DR_lepFatJets[goodcleanFatJets == true],gcFatJet_ptargsort)")
     .Define("minDR_lepFatJets","ROOT::VecOps::Min(DR_gcFatJets)")
     .Define("ptrel_atMinDR_lepFatJets","ptRel(gcFatJet_pt,gcFatJet_eta,gcFatJet_phi,gcFatJet_mass,lepton_pt,lepton_eta,lepton_phi,lepton_mass)[ROOT::VecOps::ArgMin(DR_gcFatJets)]")
-    .Define("SS_gcFatJets","DR_gcFatJets <= TMath::Pi()/2")
+    //    .Define("SS_gcFatJets","DR_gcFatJets <= TMath::Pi()/2")
+    .Define("SS_gcFatJets","DR_gcFatJets <= 1.2")
     .Define("NSS_gcFatJets","(int) Sum(SS_gcFatJets)")
     .Define("OS_gcFatJets","DR_gcFatJets > TMath::Pi()/2")
     .Define("gcOSFatJet_pt","gcFatJet_pt[OS_gcFatJets == true]")
@@ -844,13 +861,26 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("minM_lep_Jet", "minMlj_output[0]")
     .Define("minM_lep_Jet_jetID", "(int) minMlj_output[1]")
     .Define("minM_lep_Jet_TorW", "isLeptonic_X(minM_lep_Jet)")
-    .Define("t_output", "t_reco(minM_lep_Jet_TorW,gcJet_DeepFlavL,gcJet_pt,gcJet_eta,gcJet_phi,gcJet_mass,W_lv,minM_lep_Jet_jetID,NSS_gcJets_DeepFlavL,gcSSJet_DeepFlavL,gcSSJet_pt,gcSSJet_eta,gcSSJet_phi,gcSSJet_mass)")
+    .Define("t_output", "t_reco(minM_lep_Jet_TorW,gcJet_DeepFlavL,gcJet_pt,gcJet_eta,gcJet_phi,gcJet_mass,W_lv,minM_lep_Jet_jetID,NSS_gcJets_DeepFlavL,gcSSJet_DeepFlavL,gcSSJet_pt,gcSSJet_eta,gcSSJet_phi,gcSSJet_mass,lepton_lv)")
+    .Define("t_pt_mlj", "t_output[0]")
+    .Define("t_eta_mlj", "t_output[1]")
+    .Define("t_phi_mlj", "t_output[2]")
+    .Define("t_mass_mlj", "t_output[3]")
+    .Define("DR_W_b_mlj", "t_output[4]")
     .Define("t_pt_SSb", "t_output[5]")
     .Define("t_eta_SSb", "t_output[6]")
     .Define("t_phi_SSb", "t_output[7]")
     .Define("t_mass_SSb", "t_output[8]")
     .Define("DR_W_b_SSb", "t_output[9]")
-    .Define("Bprime_output", "BPrime_reco_new(W_lv,NOS_gcJets_DeepFlavL,NSS_gcJets_DeepFlavL,gcSSJet_DeepFlavL,gcOSJet_DeepFlavL,gcOSFatJet_pt,gcOSFatJet_eta,gcOSFatJet_phi,gcOSFatJet_mass,gcOSFatJet_pNetTag,gcOSJet_pt,gcOSJet_eta,gcOSJet_phi,gcOSJet_mass,gcSSJet_pt,gcSSJet_eta,gcSSJet_phi,gcSSJet_mass)")
+    .Define("t_pt_SSbMlb", "t_output[10]")
+    .Define("t_eta_SSbMlb", "t_output[11]")
+    .Define("t_phi_SSbMlb", "t_output[12]")
+    .Define("t_mass_SSbMlb", "t_output[13]")
+    .Define("DR_W_b_SSbMlb", "t_output[14]")
+    .Define("t_minMlb_SSbMlb", "t_output[15]")
+    .Define("t_minMlbidx_SSbMlb", "t_output[16]")
+    .Define("t_Mlb_SSb", "t_output[17]")
+    .Define("Bprime_output", "BPrime_reco_new(W_lv,NOS_gcJets_DeepFlavL,NSS_gcJets_DeepFlavL,gcSSJet_DeepFlavL,gcOSJet_DeepFlavL,gcOSFatJet_pt,gcOSFatJet_eta,gcOSFatJet_phi,gcOSFatJet_mass,gcOSFatJet_pNetTag,gcOSJet_pt,gcOSJet_eta,gcOSJet_phi,gcOSJet_mass,gcSSJet_pt,gcSSJet_eta,gcSSJet_phi,gcSSJet_mass,lepton_lv)")
     .Define("Bprime_mass", "Bprime_output[0]")
     .Define("Bprime_pt", "Bprime_output[1]")
     .Define("Bprime_eta", "Bprime_output[2]")
@@ -859,7 +889,15 @@ void rdf::analyzer_RDF(TString testNum, TString jesvar)
     .Define("Bprime_ptbal", "Bprime_output[5]")
     .Define("Bprime_chi2", "Bprime_output[6]")
     .Define("Bdecay_obs", "Bprime_output[7]")
-    .Define("Bprime_chi2_discrete", "Bprime_output[8]");
+    .Define("Bprime_chi2_discrete", "Bprime_output[8]")
+    .Define("Bprime2_mass", "Bprime_output[9]")
+    .Define("Bprime2_pt", "Bprime_output[10]")
+    .Define("Bprime2_eta", "Bprime_output[11]")
+    .Define("Bprime2_phi", "Bprime_output[12]")
+    .Define("Bprime2_DR", "Bprime_output[13]")
+    .Define("Bprime2_ptbal", "Bprime_output[14]")
+    .Define("Bprime2_chi2", "Bprime_output[15]");
+
   
   // -------------------------------------------------
   // 		Save Snapshot to file

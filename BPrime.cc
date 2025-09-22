@@ -8,7 +8,7 @@
 using namespace std;
 using namespace ROOT::VecOps;
 
-RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJets_DeepFlavM, RVec<int> gcSSJet_DeepFlavM, RVec<int> gcOSJet_DeepFlavM, RVec<double> gcOSFatJet_pt, RVec<double> gcOSFatJet_eta, RVec<double> gcOSFatJet_phi, RVec<double> gcOSFatJet_mass, RVec<double> gcOSFatJet_tag, RVec<float> gcOSJet_pt, RVec<float> gcOSJet_eta, RVec<float> gcOSJet_phi, RVec<float> gcOSJet_mass, RVec<float> gcSSJet_pt, RVec<float> gcSSJet_eta, RVec<float> gcSSJet_phi, RVec<float> gcSSJet_mass)
+RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJets_DeepFlavM, RVec<int> gcSSJet_DeepFlavM, RVec<int> gcOSJet_DeepFlavM, RVec<double> gcOSFatJet_pt, RVec<double> gcOSFatJet_eta, RVec<double> gcOSFatJet_phi, RVec<double> gcOSFatJet_mass, RVec<double> gcOSFatJet_tag, RVec<float> gcOSJet_pt, RVec<float> gcOSJet_eta, RVec<float> gcOSJet_phi, RVec<float> gcOSJet_mass, RVec<float> gcSSJet_pt, RVec<float> gcSSJet_eta, RVec<float> gcSSJet_phi, RVec<float> gcSSJet_mass, TLorentzVector lepton_lv)
 {
   bool debug = false;
   if(debug) std::cout << "--------------- BPrime Reco ------------------------" << std::endl;
@@ -16,7 +16,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
   
   if(debug) std::cout << "Size check: gcOSFatJet_pt has " << gcOSFatJet_pt.size() << ", gcOSJet_pt has " << gcOSJet_pt.size() << ", gcOSJet_DeepFlavM has " << gcOSJet_DeepFlavM.size() << ", gcSSJet_pt has " << gcSSJet_pt.size() << ", gcSSJet_DeepFlavM has " << gcSSJet_DeepFlavM.size() << std::endl;
   
-  TLorentzVector Tcand_lv, Wcand_lv;
+  TLorentzVector Tcand_lv, Wcand_lv, Tcand2_lv;
   
   // Flags to know which case was found and if a case was found at all
   // taggedTjet = 1, taggedWjet = 2, untaggedTlep = 3, untaggedWlep = 4
@@ -24,7 +24,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
   
   // Set up b tagged jet booleans
   bool SSbJet = false, OSbJet = false, SSmljJet = false;
-  TLorentzVector BjetOS_lv, BjetSS_lv, W_jet_lv, fatJet;
+  TLorentzVector BjetOS_lv, BjetSS_lv, W_jet_lv, fatJet, BjetSSmlb_lv;
   
   // Find out whether the highest pt other side AK8 (fat jet) is t-tagged
   // If so, find where it is and make it into a TLorentzVector
@@ -55,7 +55,18 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
     float SSBmass = gcSSJet_mass[gcSSJet_DeepFlavM == 1].at(0);
     if(debug) std::cout << "\t Building SSB from " << SSBpt << ", " << SSBeta << ", " << SSBphi << ", " << SSBmass << std::endl;
     BjetSS_lv.SetPtEtaPhiM(SSBpt, SSBeta, SSBphi, SSBmass);
-    
+
+    float minMlb = 999999.9;
+    int minMlbidx = -1;
+    for(unsigned int ib = 0; ib < gcSSJet_pt[gcSSJet_DeepFlavM == 1].size(); ib++){
+      BjetSSmlb_lv.SetPtEtaPhiM(gcSSJet_pt[gcSSJet_DeepFlavM == 1].at(ib), gcSSJet_eta[gcSSJet_DeepFlavM == 1].at(ib), gcSSJet_phi[gcSSJet_DeepFlavM == 1].at(ib), gcSSJet_mass[gcSSJet_DeepFlavM == 1].at(ib));
+      if((BjetSSmlb_lv + lepton_lv).M() < minMlb){
+	minMlb = (BjetSSmlb_lv + lepton_lv).M();
+	minMlbidx = ib;
+      }
+    }
+    BjetSSmlb_lv.SetPtEtaPhiM(gcSSJet_pt[gcSSJet_DeepFlavM == 1].at(minMlbidx), gcSSJet_eta[gcSSJet_DeepFlavM == 1].at(minMlbidx), gcSSJet_phi[gcSSJet_DeepFlavM == 1].at(minMlbidx), gcSSJet_mass[gcSSJet_DeepFlavM == 1].at(minMlbidx));
+
   }
   
   // minMlj Method: Save whether minMlj is less than 173
@@ -103,6 +114,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
     if(debug) std::cout << "Building case 1" << std::endl;
     Wcand_lv = W_lv;
     Tcand_lv = fatJet;
+    Tcand2_lv = fatJet;
     Bdecay_obs = 1;
     chi2_mtop = chi2_mtophad;
     chi2_sigtop = chi2_sigtophad;
@@ -117,6 +129,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
     Wcand_lv = fatJet;
     //    if (BTag == true) {
     Tcand_lv = W_lv + BjetSS_lv; // Bjet should be set above in the B jet if statement
+    Tcand2_lv = W_lv + BjetSSmlb_lv; // Bjet should be set above in the B jet if statement
     // } else { //BTag == false
     //   Tcand_lv = top_lv;
     // }
@@ -143,6 +156,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
       if(debug) std::cout << "Building case 3" << std::endl;
       Wcand_lv = fatJet;
       Tcand_lv = W_lv + BjetSS_lv;
+      Tcand2_lv = W_lv + BjetSSmlb_lv;
       Bdecay_obs = 3;
       chi2_mtop = chi2_mtoplep;
       chi2_sigtop = chi2_sigtoplep;
@@ -157,6 +171,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
 	if(debug) std::cout << "Building case 4 with OSB" << std::endl;
         Tcand_lv = fatJet + BjetOS_lv;
       }
+      Tcand2_lv = Tcand_lv;
       Wcand_lv = W_lv;
       Bdecay_obs = 4;
       chi2_mtop = chi2_mtophad;
@@ -173,6 +188,7 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
   // Using the canidates from above, make a BPrime and store various attributes of it
   if(debug) std::cout << "Building Bprime" << std::endl;
   TLorentzVector Bprime_lv = Wcand_lv + Tcand_lv;
+  TLorentzVector Bprime2_lv = Wcand_lv + Tcand2_lv;
   if(debug) std::cout << "Finished Bprime" << std::endl;
   float Bprime_mass = Bprime_lv.M();
   float Bprime_pt = Bprime_lv.Pt();
@@ -186,8 +202,16 @@ RVec<float> BPrime_reco_new(TLorentzVector W_lv, int NOSJets_DeepFlavM, int NSSJ
   if (Bprime_chi2 > 25 && Bprime_chi2 < 75) Bprime_chi2_discrete = 1.0;
   else if (Bprime_chi2 > 75) Bprime_chi2_discrete = 2.0;
 
+  float Bprime2_mass = Bprime2_lv.M();
+  float Bprime2_pt = Bprime2_lv.Pt();
+  float Bprime2_eta = Bprime2_lv.Eta();
+  float Bprime2_phi = Bprime2_lv.Phi();
+  float Bprime2_DR = Wcand_lv.DeltaR(Tcand2_lv);
+  float Bprime2_ptbal = Wcand_lv.Pt() / Tcand2_lv.Pt();
+  float Bprime2_chi2 = pow(Tcand2_lv.M() - chi2_mtop, 2) / pow(chi2_sigtop,2) + pow(Wcand_lv.M() - chi2_mW, 2) / pow(chi2_sigW,2) + pow(Bprime2_DR - TMath::Pi(), 2) / (0.2 * 0.2) + pow(1 - Bprime2_ptbal, 2) / (0.8 * 0.8); 
+  
   // // Make a vector with the stored values and return it
-  RVec<float> BPrimeVec = {Bprime_mass, Bprime_pt, Bprime_eta, Bprime_phi, Bprime_DR, Bprime_ptbal, Bprime_chi2, Bdecay_obs, Bprime_chi2_discrete};
+  RVec<float> BPrimeVec = {Bprime_mass, Bprime_pt, Bprime_eta, Bprime_phi, Bprime_DR, Bprime_ptbal, Bprime_chi2, Bdecay_obs, Bprime_chi2_discrete, Bprime2_mass, Bprime2_pt, Bprime2_eta, Bprime2_phi, Bprime2_DR, Bprime2_ptbal, Bprime2_chi2};
   return BPrimeVec;
 }
 

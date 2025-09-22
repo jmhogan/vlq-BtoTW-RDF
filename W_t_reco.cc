@@ -84,7 +84,7 @@ bool isLeptonic_X(float minMleppJet)
 // 	  HOMEMADE TLORENTZVECTOR CONSTRUCTOR
 // -----------------------------------------------------
 // Commented Method Only
-RVec<float> t_reco(int isLeptonic, RVec<int>& isB, RVec<float>& jet_pt, RVec<float>& jet_eta, RVec<float>& jet_phi, RVec<float>& jet_mass, TLorentzVector Wlv, int ind_MinMlj, int NSSB, RVec<int>& isSSb, RVec<float>& SSpt, RVec<float>& SSeta, RVec<float>& SSphi, RVec<float>& SSmass)
+RVec<float> t_reco(int isLeptonic, RVec<int>& isB, RVec<float>& jet_pt, RVec<float>& jet_eta, RVec<float>& jet_phi, RVec<float>& jet_mass, TLorentzVector Wlv, int ind_MinMlj, int NSSB, RVec<int>& isSSb, RVec<float>& SSpt, RVec<float>& SSeta, RVec<float>& SSphi, RVec<float>& SSmass, TLorentzVector lepton_lv)
 {
   float t_mass = -999;
   float t_pt = -999;
@@ -96,6 +96,14 @@ RVec<float> t_reco(int isLeptonic, RVec<int>& isB, RVec<float>& jet_pt, RVec<flo
   float tSS_eta = -999;
   float tSS_phi = -999;
   float tSS_dRWb = -999;
+  float tSS_mlb = -999;
+  float tSSmlb_mass = -999;
+  float tSSmlb_pt = -999;
+  float tSSmlb_eta = -999;
+  float tSSmlb_phi = -999;
+  float tSSmlb_dRWb = -999;
+  float tSSmlb_mlb = -999;
+  float tSSmlb_idx = -999;
   float minDR_Wb = 999;
   int bIndex = 999;
   TLorentzVector bottom_lv, top_lv;
@@ -133,9 +141,31 @@ RVec<float> t_reco(int isLeptonic, RVec<int>& isB, RVec<float>& jet_pt, RVec<flo
     tSS_eta = top_lv.Eta();
     tSS_phi = top_lv.Phi();
     tSS_dRWb = bottom_lv.DeltaR(Wlv);
+    tSS_mlb = (bottom_lv + lepton_lv).M();
+
+    float minMlb = 999999.9;
+    int minMlbidx = -1;
+    for(unsigned int ib = 0; ib < NSSB; ib++){
+      bottom_lv.SetPtEtaPhiM(SSpt[isSSb == 1].at(ib), SSeta[isSSb == 1].at(ib), SSphi[isSSb == 1].at(ib), SSmass[isSSb == 1].at(ib));
+      top_lv = bottom_lv + lepton_lv;
+      if(top_lv.M() < minMlb){
+	minMlb = top_lv.M();
+	minMlbidx = ib;
+      }
+    }
+    bottom_lv.SetPtEtaPhiM(SSpt[isSSb == 1].at(minMlbidx), SSeta[isSSb == 1].at(minMlbidx), SSphi[isSSb == 1].at(minMlbidx), SSmass[isSSb == 1].at(minMlbidx));
+    top_lv = Wlv + bottom_lv;
+    tSSmlb_mass = top_lv.M();
+    tSSmlb_pt = top_lv.Pt();
+    tSSmlb_eta = top_lv.Eta();
+    tSSmlb_phi = top_lv.Phi();
+    tSSmlb_dRWb = bottom_lv.DeltaR(Wlv);
+    tSSmlb_mlb = minMlb;
+    tSSmlb_idx = minMlbidx;
+    
   }
 
-  RVec<float> t_FiveVec = {t_pt,t_eta,t_phi,t_mass,t_dRWb,tSS_pt,tSS_eta,tSS_phi,tSS_mass,tSS_dRWb};
+  RVec<float> t_FiveVec = {t_pt,t_eta,t_phi,t_mass,t_dRWb,tSS_pt,tSS_eta,tSS_phi,tSS_mass,tSS_dRWb,tSSmlb_pt,tSSmlb_eta,tSSmlb_phi,tSSmlb_mass,tSSmlb_dRWb,tSSmlb_mlb,tSSmlb_idx,tSS_mlb};
   return t_FiveVec;
 };
 
