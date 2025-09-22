@@ -18,6 +18,9 @@ auto Bprime_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pd
 
   for (unsigned int i = 0; i < nGenPart; i++)
   {
+    // if(i < 30){
+    //   std::cout << "GenPart " << i << ", id = " << GenPart_pdgId[i] << ", eta = " << GenPart_eta[i] << ", mother idx = " << GenPart_genPartIdxMother[i] << ", mother id = " << GenPart_pdgId[GenPart_genPartIdxMother[i]] << std::endl;
+    // }
     int id = GenPart_pdgId[i];
     if (abs(id) != 6000007)
     {
@@ -63,15 +66,26 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       VLQ_idx = i;
     }
   if(VLQ_idx == -1) VLQ_idx = 0; // grab the events without an explicit VLQ
+
+  int tFromVLQid = 0;
+  if(VLQ_idx == 0){
+    // GP 2 will be the 24
+    if(GenPart_pdgId[2] == 24) tFromVLQid = -6;
+    else if(GenPart_pdgId[2] == -24) tFromVLQid = 6;
+    else{ std::cout << "No VLQ, GenPart idx isn't the W" << std::endl; }
+  }
+  
+  //  std::cout << "\t top gen: VLQ idx = " << VLQ_idx << ", id = " << GenPart_pdgId[VLQ_idx] << std::endl;
   for (unsigned int i = 0; i < nGenPart; i++)
     {
-      if (abs(GenPart_pdgId[i]) != 6 && GenPart_genPartIdxMother[i] != VLQ_idx)
+      if (abs(GenPart_pdgId[i]) != 6 || GenPart_genPartIdxMother[i] != VLQ_idx)
 	{
 	  continue;
 	}
-      tFromVLQ_idx = i;
+      //      std::cout << "\t\t ...checking idx " << i << ", id = " << GenPart_pdgId[i] << ", mother idx = " << GenPart_genPartIdxMother[i] << std::endl;
+      if(VLQ_idx > 0 || GenPart_pdgId[i] == tFromVLQid) tFromVLQ_idx = i; // going to take the first one that passes. If VLQ exists, will only be one. If not, seems the 24/6 come first
     } // get direct t daughter
-
+  //  std::cout << "\t top gen: t from VLQ idx = " << tFromVLQ_idx << ", id = " << GenPart_pdgId[tFromVLQ_idx] << std::endl;
   int tgen = tFromVLQ_idx; // save index of the electron
   for (unsigned int k = tFromVLQ_idx; k < nGenPart; k++)
     {
@@ -86,6 +100,7 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       tgen = k; // take the last copy
     }
 
+  //  std::cout << "\t top gen: last t copy idx = " << tgen << ", id = " << GenPart_pdgId[tgen] << std::endl;
   //  cout << "TOP INFO: VLQ idx = " << VLQ_idx << ", top idx = " << tFromVLQ_idx << endl;
   
   // store t info
@@ -113,7 +128,7 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
     {
       continue;      
     }
-
+    //    std::cout << "\t\t t daughters: first copy idx = " << i << ", id = " << GenPart_pdgId[i] << std::endl;
     int igen = i;
     for (unsigned int j = i; j < nGenPart; j++)
     {
@@ -127,9 +142,10 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       }
       igen = j; // take the last copy of t daughter
     }
-
+    //    std::cout << "\t\t t daughters: last copy idx = " << igen << ", id = " << GenPart_pdgId[igen] << std::endl;
     if (abs(id) == 5)
     { // store b info
+      //      std::cout << "\t\t\t t daughters: identified b quark" << std::endl;
       t_gen_info[6] = GenPart_pt[igen];
       t_gen_info[7] = GenPart_eta[igen];
       t_gen_info[8] = GenPart_phi[igen]; // did not record gen mass, because =0 for all b
@@ -152,6 +168,7 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
         } // look for W daughters
         int j_id = GenPart_pdgId[j]; // ex: 11 for el
 
+	//	std::cout << "\t\t\t W from t daughters: first copy idx = " << j << ", id = " << j_id << std::endl;
         int jgen = j; // save index of the electron
         for (unsigned int k = j; k < nGenPart; k++)
         {
@@ -165,23 +182,28 @@ auto t_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
           }
           jgen = k; // take the last copy of W daughter
         }
-
+	//	std::cout << "\t\t\t W from t daughters: last copy idx = " << jgen << ", id = " << GenPart_pdgId[jgen] << std::endl;
+	
         int n = 0;
         if (abs(j_id) == 11 || abs(j_id) == 13 || abs(j_id) == 15)
         {
+	  //std::cout << "\t\t\t W from t daughters: identified lepton, setting trueLeptonicT = 1" << std::endl;
           trueLeptonicT = 1;
         } // store e/mu/tau first
         else if (abs(j_id) == 12 || abs(j_id) == 14 || abs(j_id) == 16)
         {
+	  //std::cout << "\t\t\t W from t daughters: identified neutrino, setting trueLeptonicT = 1" << std::endl;
           trueLeptonicT = 1;
           n = 6;
         } // then neutrinos
         else if (trueLeptonicT == -1)
         {
+	  //std::cout << "\t\t\t W from t daughters: identified quark, setting trueLeptonicT = 0" << std::endl;
           trueLeptonicT = 0;
         } // quark 1
         else if (trueLeptonicT == 0)
         {
+	  //std::cout << "\t\t\t W from t daughters: identified quark, leaving trueLeptonicT = 0" << std::endl;
           n = 6;
         } // quark 2
         else
@@ -228,17 +250,21 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       VLQ_idx = i;
     }
   if(VLQ_idx == -1) VLQ_idx = 0; // grab the events without an explicit VLQ
+  //  std::cout << "\t W gen: VLQ idx = " << VLQ_idx << ", id = " << GenPart_pdgId[VLQ_idx] << std::endl;
+
   for (unsigned int i = 0; i < nGenPart; i++)
     {
-      if (abs(GenPart_pdgId[i]) != 24 && GenPart_genPartIdxMother[i] != VLQ_idx)
+      if (abs(GenPart_pdgId[i]) != 24 || GenPart_genPartIdxMother[i] != VLQ_idx)
 	{
 	  continue;
 	}
+      //      std::cout << "\t\t ...checking idx " << i << ", id = " << GenPart_pdgId[i] << ", mother idx = " << GenPart_genPartIdxMother[i] << std::endl;
       WFromVLQ_idx = i;
     } // get direct W daughter
-
-  //  cout << "W INFO: VLQ idx = " << VLQ_idx << ", W idx = " << WFromVLQ_idx << endl;
   
+  //  cout << "W INFO: VLQ idx = " << VLQ_idx << ", W idx = " << WFromVLQ_idx << endl;
+
+  //std::cout << "\t W gen: W from VLQ idx = " << WFromVLQ_idx << ", id = " << GenPart_pdgId[WFromVLQ_idx] << std::endl;
   int wgen = WFromVLQ_idx; // save index of the electron
   for (unsigned int k = WFromVLQ_idx; k < nGenPart; k++)
     {
@@ -254,7 +280,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
     }
 
   //  cout << "Found W from VLQ at idx " << wgen << endl;
-  
+  //std::cout << "\t W gen: last W copy idx = " << wgen << ", id = " << GenPart_pdgId[wgen] << std::endl;  
   if (W_gen_info[0] == -999)
     {
       W_gen_info[0] = GenPart_pt[wgen];
@@ -280,6 +306,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       continue;
     } // look for daughters of W
 
+    //std::cout << "\t\t W daughters: first copy idx = " << i << ", id = " << GenPart_pdgId[i] << std::endl;
     int igen = i;
     for (unsigned int j = igen; j < nGenPart; j++)
     {
@@ -293,6 +320,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
       }
       igen = j; // take the last copy of W daughter
     }
+    //std::cout << "\t\t W daughters: last copy idx = " << igen << ", id = " << GenPart_pdgId[igen] << std::endl;
 
     WdaughterIDs.push_back(id);
     WdaughterIdx.push_back(igen);
@@ -306,6 +334,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
   }
 
   if(abs(WdaughterIDs.at(0)) > 10 && abs(WdaughterIDs.at(0)) < 17){ // lepton
+    //std::cout << "\t\t\t W daughters: found lepton..." << std::endl;
     if(abs(WdaughterIDs.at(0)) == abs (WdaughterIDs.at(1))){
       //std::cout << "Pair production! " << WdaughterIDs.at(0) << ", " << WdaughterIDs.at(1) << std::endl;
       WdaughterIDs.erase(WdaughterIDs.begin()+1);
@@ -323,10 +352,10 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
     }
 
     if(abs(abs(WdaughterIDs.at(0)) - abs(WdaughterIDs.at(1))) != 1){ 
-      std::cout << "Lepton daughters not 1 ID apart! Check me: " << WdaughterIDs.at(0) << ", " << WdaughterIDs.at(1) << std::endl;
+      //std::cout << "Lepton daughters not 1 ID apart! Check me: " << WdaughterIDs.at(0) << ", " << WdaughterIDs.at(1) << std::endl;
     }
     else{
-
+      //std::cout << "\t\t\t\t ...setting trueLeptonicW = 1" << std::endl;
       trueLeptonicW = 1;
       int n = 0;
       W_gen_info[6 + n] = GenPart_pt[WdaughterIdx.at(0)];
@@ -346,6 +375,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
   }
 
   if(abs(WdaughterIDs.at(0)) < 6 && abs(WdaughterIDs.at(1)) < 6){ // quarks
+    //std::cout << "\t\t\t W daughters: found quark, setting trueLeptonicW = 0" << std::endl;
     
     trueLeptonicW = 0;
     int n = 0;
@@ -365,7 +395,7 @@ auto W_gen_info(string sample, unsigned int nGenPart, RVec<int> &GenPart_pdgId, 
   }
 
   if(trueLeptonicW == -1){
-    std::cout << "Didn't identify W decay. Daughters are: " << std::endl;
+    //std::cout << "Didn't identify W decay. Daughters are: " << std::endl;
     for(unsigned int idau = 0; idau < WdaughterIDs.size(); idau++){
       cout << WdaughterIDs.at(idau) << ", " << endl;
     }
